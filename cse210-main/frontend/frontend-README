@@ -1,0 +1,5 @@
+how to run frontend:
+1.download nodejs https://nodejs.org/en/download/
+2.open command prompt to check if you have installed nodejs and npm:
+node -v
+npm -v
