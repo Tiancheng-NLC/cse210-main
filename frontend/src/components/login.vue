@@ -21,7 +21,7 @@
 </template>
 
 <script>
-// import instance from "../axios";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -29,16 +29,24 @@ export default {
       password: "",
     };
   },
-  //   methods: {
-  //     login() {
-  //       alert("good");
-  //       const data = {
-  //         email: this.username,
-  //         password: this.password,
-  //       };
-  //       var tempThis = this;
-  //     },
-  //   },
+  methods: {
+    login() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+      var tempThis = this;
+      axios
+        .post("api/verifylogin", data)
+        .then(function (response) {
+          console.log(response);
+          tempThis.$router.push("/");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 
