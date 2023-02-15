@@ -43,7 +43,7 @@
 </template>
 
 <script>
-// import instance from "../axios";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -51,16 +51,27 @@ export default {
       password: "",
     };
   },
-  //   methods: {
-  //     login() {
-  //       alert("good");
-  //       const data = {
-  //         email: this.username,
-  //         password: this.password,
-  //       };
-  //       var tempThis = this;
-  //     },
-  //   },
+  methods: {
+    signup() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+      var tempThis = this;
+      axios
+        .post("http://localhost:5173/api/signup", data)
+        .then(function (response) {
+          console.log(response);
+          // if(status code is 200){
+          //   do something
+          // }
+          // tempThis.$router.push("/");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

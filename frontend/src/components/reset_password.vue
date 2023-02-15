@@ -45,15 +45,27 @@ export default {
       password: "",
     };
   },
-  //   methods: {
-  //     login() {
-  //       const data = {
-  //         email: this.username,
-  //         password: this.password,
-  //       };
-  //       var tempThis = this;
-  //     },
-  //   },
+  methods: {
+    reset() {
+      const data = {
+        cur_pwd: this.cur_pwd,
+        password: this.password,
+      };
+      // var tempThis = this;
+      axios
+        .post("http://localhost:5173/api/resetpassword", data)
+        .then(function (response) {
+          console.log(response);
+          // if(status code is 200){
+          //   do something
+          // }
+          // tempThis.$router.push("/");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

@@ -55,7 +55,7 @@ export default {
       };
       var tempThis = this;
       axios
-        .post("api/verifylogin", data)
+        .post("http://localhost:5173/api/verifylogin", data)
         .then(function (response) {
           console.log(response);
           // if(status code is 200){
