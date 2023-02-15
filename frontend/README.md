@@ -1,29 +1,16 @@
-# vue-project
+# setup frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+1.go to https://github.com/roomie-cse210/roomie-frontend and download files to local computer
 
-## Recommended IDE Setup
+2.go to this page https://nodejs.org/en/download/ to install nodejs and npm according to your system(you just need to install once and it will install both nodejs and npm)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+3.check if you have installed nodejs and npm:
+	open command prompt, type “node -v” and “npm -v”
 
-## Customize configuration
+4.install vuejs through npm: “npm install vue”
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+5.open the local file using vscode, start a new terminal and go into "frontend" folder(use command like “cd”)
 
-## Project Setup
+6.then type "npm install" 
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+7.type "npm run dev" and you should see the localhost link for website
