@@ -1,14 +1,24 @@
 <template>
   <div id="forget">
-    <h3>Find password</h3>
+    <!-- logo & app name -->
+    <div id="top">
+      <img src="../img/logo.png" alt="logo missing" />
+      <h2>Roomie</h2>
+    </div>
+    <!-- title -->
+    <h3>Find my Password</h3>
+    <!-- main box -->
     <div id="box">
+      <!-- email -->
       <div id="email">
         Enter your email address to reset password
         <br />
         <input type="text" v-model="email" />
       </div>
       <br /><br />
-      <button id="submit" @click="forget()">Send</button>
+      <button id="submit" @click="forget()">
+        <router-link to="/reset">Send</router-link>
+      </button>
     </div>
   </div>
 </template>

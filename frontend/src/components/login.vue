@@ -1,21 +1,39 @@
 <template>
   <div id="login">
-    <h3>Login to Roomies</h3>
+    <!-- logo & app name -->
+    <div id="top">
+      <img src="../img/logo.png" alt="logo missing" />
+      <h2>Roomie</h2>
+    </div>
+    <!-- title -->
+    <h3>Login to Roomie</h3>
+    <!-- main box -->
     <div id="box">
+      <!-- email -->
       <div id="email">
         Email address
         <br />
         <input type="text" v-model="email" />
       </div>
-
       <br /><br />
+      <!-- password -->
       <div id="password">
         Password
+        <br />
+        <router-link to="/forget">Forget password?</router-link>
         <br />
         <input type="text" v-model="password" />
       </div>
       <br /><br />
+      <!-- login button -->
       <button id="submit" @click="login()">Log in</button>
+      <br /><br />
+      <!-- new user -->
+      <div id="new_user">
+        New to Roomie?
+        <br />
+        <router-link to="/signup">Create an account</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -68,5 +86,10 @@ export default {
 #submit {
   background-color: green;
   color: aliceblue;
+}
+#new_user {
+  margin: auto;
+  border: 3px solid green;
+  padding: 10px;
 }
 </style>

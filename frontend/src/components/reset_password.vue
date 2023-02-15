@@ -1,19 +1,36 @@
 <template>
   <div id="reset">
-    <h3>Reset password</h3>
+    <!-- logo & app name -->
+    <div id="top">
+      <img src="../img/logo.png" alt="logo missing" />
+      <h2>Roomie</h2>
+    </div>
+    <!-- title -->
+    <h3>Reset Password</h3>
+    <!-- main box -->
     <div id="box">
+      <!-- current password -->
       <div id="cur_pwd">
         Please enter current password
         <br />
         <input type="text" v-model="cur_pwd" />
       </div>
       <br /><br />
+      <!-- new password -->
       <div id="password">
-        Password
+        Enter a new password
         <br />
         <input type="text" v-model="password" />
       </div>
       <br /><br />
+      <!-- confirm new password -->
+      <div id="confirm_password">
+        Confirm your new password
+        <br />
+        <input type="text" />
+      </div>
+      <br /><br />
+      <!-- reset button -->
       <button id="submit" @click="reset()">Reset</button>
     </div>
   </div>

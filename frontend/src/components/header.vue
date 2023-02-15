@@ -5,14 +5,8 @@
       <br />
       <router-link to="/signup">signup</router-link>
       <br />
-      <router-link to="/forget">forget-password</router-link>
-      <br />
-      <router-link to="/reset">reset-password</router-link>
-      <br />
+      <router-link to="/">home</router-link>
     </div>
-    this is header
-    <br />
-    <router-link to="/">home</router-link>
   </div>
 </template>
 
@@ -24,8 +18,5 @@ body {
   background-color: #69b99d;
   width: 100%;
   text-align: center;
-}
-#left {
-  float: left;
 }
 </style>
