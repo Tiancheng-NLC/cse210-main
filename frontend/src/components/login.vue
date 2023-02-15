@@ -40,6 +40,9 @@ export default {
         .post("api/verifylogin", data)
         .then(function (response) {
           console.log(response);
+          // if(status code is 200){
+          //   do something
+          // }
           tempThis.$router.push("/");
         })
         .catch(function (err) {

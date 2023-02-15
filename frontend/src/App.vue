@@ -1,6 +1,5 @@
 <template>
   <div>
-    hello
     <Header
       v-if="
         this.$route.path !== '/login' &&

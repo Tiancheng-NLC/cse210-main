@@ -2,6 +2,12 @@
   <div id="reset">
     <h3>Reset password</h3>
     <div id="box">
+      <div id="cur_pwd">
+        Please enter current password
+        <br />
+        <input type="text" v-model="cur_pwd" />
+      </div>
+      <br /><br />
       <div id="password">
         Password
         <br />
@@ -14,16 +20,16 @@
 </template>
 
 <script>
-// import instance from "../axios";
+import axios from "axios";
 export default {
   data() {
     return {
+      cur_pwd: "",
       password: "",
     };
   },
   //   methods: {
   //     login() {
-  //       alert("good");
   //       const data = {
   //         email: this.username,
   //         password: this.password,
