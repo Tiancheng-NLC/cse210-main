@@ -61,11 +61,11 @@ export default {
           // console.log(response.status);
           // 200,400,500
           // 200 success
-
-          // if(status code is 200){
-          //   do something
+          // if(success){
+          //   this.$store.commit("setUser",code)
+          //   this.$router.push('')
           // }
-          tempThis.$router.push("/");
+          // tempThis.$router.push("/");
         })
         .catch(function (err) {
           console.log(err);

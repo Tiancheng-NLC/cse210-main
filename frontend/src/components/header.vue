@@ -2,11 +2,13 @@
   <div id="header">
     <!-- right section -->
     <div id="right_header">
-      <div v-if="!isLoggedIn">
+      <!-- if NOT logged in -->
+      <div v-if="!loggedIn">
         <button @click="direct('login')">login</button>
         &nbsp;&nbsp;
         <button @click="direct('signup')">signup</button>
       </div>
+      <!-- if logged in -->
       <div v-else id="dropdown">
         <div @click="toggleProfile()">
           <img class="logo" src="../img/profile.png" alt="logo missing" />
@@ -33,14 +35,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      isLoggedIn: true,
-    };
+  computed: {
+    loggedIn() {
+      var log = this.$store.getters.isLoggedIn;
+      return log;
+    },
   },
   methods: {
     logout() {
-      this.isLoggedIn = false;
+      this.$store.commit("setUser", null);
     },
     direct(target) {
       this.$router.push("/" + target);
