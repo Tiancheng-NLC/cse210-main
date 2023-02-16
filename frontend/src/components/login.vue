@@ -2,7 +2,7 @@
   <div id="login">
     <!-- logo & app name -->
     <div id="top">
-      <img src="../img/logo.png" alt="logo missing" />
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="80"/>
       <h2>Roomie</h2>
     </div>
     <!-- title -->
@@ -10,19 +10,18 @@
     <!-- main box -->
     <div id="box">
       <!-- email -->
-      <div id="email">
-        Email address
-        <br />
-        <input type="text" v-model="email" />
+      <div id="input">
+        <label>Enter email</label>
+        <input class="field" type="text" v-model="email">
       </div>
       <br /><br />
       <!-- password -->
-      <div id="password">
-        Password
-        <br />
-        <router-link to="/forget">Forget password?</router-link>
-        <br />
-        <input type="text" v-model="password" />
+      <div id="input">
+        <div id="QA">
+          <label>Password</label>
+          <router-link to="/forget">Forget password?</router-link>
+        </div>
+        <input class="field" type="text" v-model="password" />
       </div>
       <br /><br />
       <!-- login button -->
@@ -30,9 +29,10 @@
       <br /><br />
       <!-- new user -->
       <div id="new_user">
-        New to Roomie?
-        <br />
-        <router-link to="/signup">Create an account</router-link>
+        <div id="QA">
+          <label>New to Roomie?</label>
+          <router-link to="/signup">Create an account</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -70,26 +70,3 @@ export default {
   },
 };
 </script>
-
-<style scope>
-#login {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-}
-#box {
-  width: 50%;
-  margin: auto;
-  border: 3px solid green;
-  padding: 10px;
-}
-#submit {
-  background-color: green;
-  color: aliceblue;
-}
-#new_user {
-  margin: auto;
-  border: 3px solid green;
-  padding: 10px;
-}
-</style>

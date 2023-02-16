@@ -22,17 +22,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    direct(target) {
-      this.$router.push("/" + target);
-    },
-  },
-};
-</script>
-
-<style scoped>
+<style scope>
+body {
+  margin: 0px;
+}
 #header {
   /* background-color: #69b99d; */
   width: 100%;
@@ -65,4 +58,4 @@ export default {
 span:hover {
   background-color: #69b99d;
 }
-</style>
+</style-->
