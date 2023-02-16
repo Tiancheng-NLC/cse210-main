@@ -9,15 +9,24 @@
       "
     />
     <router-view></router-view>
-    <br />
+    <Footer
+      v-if="
+        this.$route.path !== '/login' &&
+        this.$route.path !== '/signup' &&
+        this.$route.path !== '/forget' &&
+        this.$route.path !== '/reset'
+      "
+    />
   </div>
 </template>
 
 <script>
 import Header from "@/components/header.vue";
+import Footer from "@/components/footer.vue";
 export default {
   components: {
     Header,
+    Footer,
   },
 };
 </script>

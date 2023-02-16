@@ -42,7 +42,7 @@ body{
     background: rgb(246, 245, 245);
     padding: 10px;
 
-    #input{
+    .input{
         @include flexCenter(column, 5px);
         .field{
             width: 80%;

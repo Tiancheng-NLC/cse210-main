@@ -2,17 +2,26 @@
   <div id="header">
     <!-- right section -->
     <div id="right_header">
-      <button @click="direct('login')">login</button>
-      &nbsp;&nbsp;
-      <button @click="direct('signup')">signup</button>
+      <div v-if="!isLoggedIn">
+        <button @click="direct('login')">login</button>
+        &nbsp;&nbsp;
+        <button @click="direct('signup')">signup</button>
+      </div>
+      <div v-else id="dropdown">
+        <div @click="toggleProfile()">
+          <img class="logo" src="../img/profile.png" alt="logo missing" />
+        </div>
+        <div id="profile_dropdown">
+          <button @click="direct('reset')">reset password</button>
+          <button @click="logout()">log out</button>
+        </div>
+      </div>
     </div>
     <!-- left section -->
     <div id="left_header">
       <button>Search</button>
       &nbsp;
       <button>Roommate Finder</button>
-      &nbsp;
-      <button>Lease Verifier</button>
     </div>
     <!-- center section -->
     <div id="center_header" @click="direct('')">
@@ -24,9 +33,25 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isLoggedIn: true,
+    };
+  },
   methods: {
+    logout() {
+      this.isLoggedIn = false;
+    },
     direct(target) {
       this.$router.push("/" + target);
+    },
+    toggleProfile() {
+      var dropdown = document.getElementById("profile_dropdown");
+      if (dropdown.style.visibility !== "visible") {
+        dropdown.style.visibility = "visible";
+      } else {
+        dropdown.style.visibility = "hidden";
+      }
     },
   },
 };
@@ -55,6 +80,15 @@ body {
 }
 #right_header {
   float: right;
+}
+#profile_dropdown {
+  overflow: hidden;
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  width: 200px;
+  height: auto;
+  z-index: 100;
 }
 .logo {
   width: 66px;

@@ -10,14 +10,12 @@
     <!-- main box -->
     <div id="box">
       <!-- email -->
-      <div id="input">
+      <div class="input">
         Enter your email address to reset password
         <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
-      <button id="submit" @click="forget()">
-        <router-link to="/reset">Send</router-link>
-      </button>
+      <button id="submit" @click="forget()">Send</button>
     </div>
   </div>
 </template>

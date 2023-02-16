@@ -9,20 +9,20 @@
     <h3>Reset Password</h3>
     <!-- main box -->
     <div id="box">
-      <!-- current password -->
-      <div id="input">
-        <label>Please enter current password</label>
-        <input class="field" type="text" v-model="cur_pwd" />
+      <!-- email -->
+      <div class="input">
+        <label>Please enter your email address</label>
+        <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
       <!-- new password -->
-      <div id="input">
+      <div class="input">
         <label>Enter a new password</label>
         <input class="field" type="text" v-model="password" />
       </div>
       <br /><br />
       <!-- confirm new password -->
-      <div id="input">
+      <div class="input">
         <label>Confirm your new password</label>
         <input class="field" type="text" />
       </div>
@@ -38,19 +38,19 @@ import axios from "axios";
 export default {
   data() {
     return {
-      cur_pwd: "",
+      email: "",
       password: "",
     };
   },
   methods: {
     reset() {
       const data = {
-        cur_pwd: this.cur_pwd,
+        email: this.email,
         password: this.password,
       };
       // var tempThis = this;
       axios
-        .post("http://localhost:5173/api/resetpassword", data)
+        .post("http://localhost:5173/api/updateUser", data)
         .then(function (response) {
           console.log(response);
           // if(status code is 200){

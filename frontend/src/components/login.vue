@@ -10,16 +10,16 @@
     <!-- main box -->
     <div id="box">
       <!-- email -->
-      <div id="input">
+      <div class="input">
         <label>Enter email</label>
         <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
       <!-- password -->
-      <div id="input">
+      <div class="input">
         <div id="QA">
           <label>Password</label>
-          <router-link to="/forget">Forget password?</router-link>
+          <router-link to="/forget">Forgot password?</router-link>
         </div>
         <input class="field" type="text" v-model="password" />
       </div>
@@ -55,9 +55,13 @@ export default {
       };
       var tempThis = this;
       axios
-        .post("http://localhost:5173/api/verifylogin", data)
+        .post("http://localhost:5173/api/verifyUser", data)
         .then(function (response) {
           console.log(response);
+          // console.log(response.status);
+          // 200,400,500
+          // 200 success
+
           // if(status code is 200){
           //   do something
           // }

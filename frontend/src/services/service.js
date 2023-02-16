@@ -31,9 +31,9 @@ class DataService{
             }
         })
     }
-    reset(cur_pwd,password){
+    reset(email,password){
         const data={
-            Cur_pwd:cur_pwd,
+            Email:email,
             Password:password,
         }
         return new Promise((resolve,reject)=>{

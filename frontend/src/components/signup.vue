@@ -10,19 +10,19 @@
     <!-- main box -->
     <div id="box">
       <!-- email -->
-      <div id="input">
+      <div class="input">
         <label>Please enter your email address</label>
         <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
       <!-- create password -->
-      <div id="input">
+      <div class="input">
         <label>Create a password</label>
         <input class="field" type="text" v-model="password" />
       </div>
       <br /><br />
       <!-- confirm password -->
-      <div id="input">
+      <div class="input">
         <label>Confirm your password</label>
         <input class="field" type="text" />
       </div>
@@ -58,7 +58,7 @@ export default {
       };
       var tempThis = this;
       axios
-        .post("http://localhost:5173/api/signup", data)
+        .post("http://localhost:5173/api/createUser", data)
         .then(function (response) {
           console.log(response);
           // if(status code is 200){
