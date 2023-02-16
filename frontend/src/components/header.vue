@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style scope>
+<!--style scope>
 body {
   margin: 0px;
 }
@@ -19,4 +19,4 @@ body {
   width: 100%;
   text-align: center;
 }
-</style>
+</style-->

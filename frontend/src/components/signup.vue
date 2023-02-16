@@ -2,7 +2,7 @@
   <div id="signup">
     <!-- logo & app name -->
     <div id="top">
-      <img src="../img/logo.png" alt="logo missing" />
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="80"/>
       <h2>Roomie</h2>
     </div>
     <!-- title -->
@@ -10,33 +10,32 @@
     <!-- main box -->
     <div id="box">
       <!-- email -->
-      <div id="email">
-        Please enter your email address
-        <br />
-        <input type="text" v-model="email" />
+      <div id="input">
+        <label>Please enter your email address</label>
+        <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
       <!-- create password -->
-      <div id="password">
-        Create a password
-        <br />
-        <input type="text" v-model="password" />
+      <div id="input">
+        <label>Create a password</label>
+        <input class="field" type="text" v-model="password" />
       </div>
       <br /><br />
       <!-- confirm password -->
-      <div id="confirm_password">
-        Confirm your password
-        <br />
-        <input type="text" />
+      <div id="input">
+        <label>Confirm your password</label>
+        <input class="field" type="text" />
       </div>
       <br /><br />
       <!-- signup button -->
       <button id="submit" @click="signup()">Sign up</button>
+      <br /><br />
       <!-- existed user -->
       <div id="old_user">
-        Already have an account?
-        <br />
-        <router-link to="/login">login</router-link>
+        <div id="QA">
+          <label>Already have an account?</label>
+          <router-link to="/login">login</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -63,26 +62,3 @@ export default {
   //   },
 };
 </script>
-
-<style scope>
-#signup {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-}
-#box {
-  width: 50%;
-  margin: auto;
-  border: 3px solid green;
-  padding: 10px;
-}
-#submit {
-  background-color: green;
-  color: aliceblue;
-}
-#old_user {
-  margin: auto;
-  border: 3px solid green;
-  padding: 10px;
-}
-</style>

@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+$primary-color: #fff;
+$logo-color: rgb(132, 188, 132);
+$text-color: #272727;
+$font-family: 'Poppins';
+$font-weights:(
+    "regular":400,
+    "medium": 500,
+    "bold":700
+);
+
+@mixin flexCenter($direction, $gap) {
+    display: flex;
+    flex-direction: $direction;
+    gap: $gap;
+    justify-content: center;
+    align-items: center;
+}
+
+body{
+    background: $primary-color;
+    color: $text-color;
+    font-weight: map-get($font-weights, regular);
+    text-align: center;
+    font-family: 'Poppins';
+}
+
+#top {
+    @include flexCenter(row, 10px);
+    color: $logo-color;
+    margin:20px;
+    height: 150px;
+}
+
+#box {
+    //@include flexCenter(column);
+    width: 40%;
+    margin: auto;
+    border: 2px solid $logo-color;
+    border-radius: 25px;
+    background: rgb(246, 245, 245);
+    padding: 10px;
+
+    #input{
+        @include flexCenter(column, 5px);
+        .field{
+            width: 80%;
+            border-radius: 10px;
+            border: 2px solid $primary-color;
+        }
+    }
+    #submit{
+        width: 80%;
+        background: $logo-color;
+        border: 2px solid $logo-color;
+        border-radius: 10px;
+    }
+    #new_user {
+        background: $primary-color;
+        border: 3px solid $primary-color;
+        border-radius: 10px;
+        color: $text-color;
+    }
+    #old_user {
+        background: $primary-color;
+        border: 3px solid $primary-color;
+        border-radius: 10px;
+        color: $text-color;
+    }
+    #QA{
+        @include flexCenter(row, 10px);
+    }
+}
+
+
+

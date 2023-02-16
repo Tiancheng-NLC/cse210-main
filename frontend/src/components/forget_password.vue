@@ -2,7 +2,7 @@
   <div id="forget">
     <!-- logo & app name -->
     <div id="top">
-      <img src="../img/logo.png" alt="logo missing" />
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="80"/>
       <h2>Roomie</h2>
     </div>
     <!-- title -->
@@ -10,10 +10,9 @@
     <!-- main box -->
     <div id="box">
       <!-- email -->
-      <div id="email">
+      <div id="input">
         Enter your email address to reset password
-        <br />
-        <input type="text" v-model="email" />
+        <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
       <button id="submit" @click="forget()">
@@ -43,21 +42,3 @@ export default {
   //   },
 };
 </script>
-
-<style scope>
-#forget {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-}
-#box {
-  width: 50%;
-  margin: auto;
-  border: 3px solid green;
-  padding: 10px;
-}
-#submit {
-  background-color: green;
-  color: aliceblue;
-}
-</style>
