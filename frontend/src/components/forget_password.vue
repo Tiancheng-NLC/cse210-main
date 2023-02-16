@@ -1,8 +1,8 @@
 <template>
   <div id="forget">
     <!-- logo & app name -->
-    <div id="top">
-      <img class="logo" src="../img/logo.png" alt="logo missing" width="80"/>
+    <div id="top" @click="direct('')">
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
       <h2>Roomie</h2>
     </div>
     <!-- title -->
@@ -23,22 +23,16 @@
 </template>
 
 <script>
-// import instance from "../axios";
 export default {
   data() {
     return {
       email: "",
     };
   },
-  //   methods: {
-  //     login() {
-  //       alert("good");
-  //       const data = {
-  //         email: this.username,
-  //         password: this.password,
-  //       };
-  //       var tempThis = this;
-  //     },
-  //   },
+  methods: {
+    direct(target) {
+      this.$router.push("/" + target);
+    },
+  },
 };
 </script>

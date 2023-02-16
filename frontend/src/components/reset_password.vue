@@ -1,8 +1,8 @@
 <template>
   <div id="reset">
     <!-- logo & app name -->
-    <div id="top">
-      <img class="logo" src="../img/logo.png" alt="logo missing" width="80"/>
+    <div id="top" @click="direct('')">
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
       <h2>Roomie</h2>
     </div>
     <!-- title -->
@@ -61,6 +61,9 @@ export default {
         .catch(function (err) {
           console.log(err);
         });
+    },
+    direct(target) {
+      this.$router.push("/" + target);
     },
   },
 };

@@ -1,8 +1,8 @@
 <template>
   <div id="login">
     <!-- logo & app name -->
-    <div id="top">
-      <img class="logo" src="../img/logo.png" alt="logo missing" width="80"/>
+    <div id="top" @click="direct('')">
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
       <h2>Roomie</h2>
     </div>
     <!-- title -->
@@ -12,7 +12,7 @@
       <!-- email -->
       <div id="input">
         <label>Enter email</label>
-        <input class="field" type="text" v-model="email">
+        <input class="field" type="text" v-model="email" />
       </div>
       <br /><br />
       <!-- password -->
@@ -66,6 +66,9 @@ export default {
         .catch(function (err) {
           console.log(err);
         });
+    },
+    direct(target) {
+      this.$router.push("/" + target);
     },
   },
 };

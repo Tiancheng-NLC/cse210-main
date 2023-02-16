@@ -2,17 +2,17 @@
   <div id="header">
     <!-- right section -->
     <div id="right_header">
-      <span @click="direct('login')">login</span>
-      &nbsp;
-      <span @click="direct('signup')">signup</span>
+      <button @click="direct('login')">login</button>
+      &nbsp;&nbsp;
+      <button @click="direct('signup')">signup</button>
     </div>
     <!-- left section -->
     <div id="left_header">
-      <span>Search</span>
+      <button>Search</button>
       &nbsp;
-      <span>Roommate Finder</span>
+      <button>Roommate Finder</button>
       &nbsp;
-      <span>Lease Verifier</span>
+      <button>Lease Verifier</button>
     </div>
     <!-- center section -->
     <div id="center_header" @click="direct('')">
@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 body {
   margin: 0px;
 }
@@ -65,7 +65,13 @@ body {
   font-size: x-large;
   font-weight: bold;
 }
-span:hover {
+button {
+  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: x-large;
+}
+button:hover {
   background-color: #69b99d;
 }
 </style>
