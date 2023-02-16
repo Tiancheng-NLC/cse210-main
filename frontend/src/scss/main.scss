@@ -49,6 +49,9 @@ body{
             border-radius: 10px;
             border: 2px solid $primary-color;
         }
+        .invalid{
+            color: red;
+        }
     }
     #submit{
         width: 80%;

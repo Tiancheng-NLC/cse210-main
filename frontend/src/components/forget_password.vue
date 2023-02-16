@@ -13,6 +13,7 @@
       <div class="input">
         Enter your email address to reset password
         <input class="field" type="text" v-model="email" />
+        <label class="invalid" v-show="isInvalidEmail">Invalid Email</label>
       </div>
       <br /><br />
       <button id="submit" @click="forget()">Send</button>
@@ -25,9 +26,33 @@ export default {
   data() {
     return {
       email: "",
+      isInvalidEmail: false,
     };
   },
   methods: {
+    forget(){
+       const data = {
+        email: this.email
+      };
+      axios
+          .post("http://localhost:5173/api/verifyUser", data)
+          .then(function (response) {
+            console.log(response);
+            tempThis.$router.push("/");
+          })
+          .catch(function (err) {
+            if (err.response) {
+              this.isInvalidEmail = true;
+              console.log(error.response.status);
+              console.log(error.response.headers);
+              console.log("server responded");
+            } else if (err.request) {
+              console.log("network error");
+            } else {
+              console.log(err);
+            }
+          });
+    },
     direct(target) {
       this.$router.push("/" + target);
     },
