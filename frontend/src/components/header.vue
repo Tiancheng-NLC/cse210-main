@@ -22,6 +22,16 @@
   </div>
 </template>
 
+<script>
+export default {
+  methods: {
+    direct(target) {
+      this.$router.push("/" + target);
+    },
+  },
+};
+</script>
+
 <style scope>
 body {
   margin: 0px;
