@@ -13,6 +13,7 @@
       <div class="input">
         <label>Enter email</label>
         <input class="field" type="text" v-model="email" />
+        <label class="invalid" v-show="isLoginFail">Invalid Email</label>
       </div>
       <br /><br />
       <!-- password -->
@@ -22,6 +23,7 @@
           <router-link to="/forget">Forgot password?</router-link>
         </div>
         <input class="field" type="text" v-model="password" />
+        <label class="invalid" v-show="isLoginFail">Incorrect password</label>
       </div>
       <br /><br />
       <!-- login button -->
@@ -45,6 +47,7 @@ export default {
     return {
       email: "",
       password: "",
+      isLoginFail: false,
     };
   },
   methods: {
@@ -68,7 +71,18 @@ export default {
           // tempThis.$router.push("/");
         })
         .catch(function (err) {
-          console.log(err);
+          if (err.response) {
+            // Request made and server responded
+            this.isLoginFail = true;
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            console.log("server responded");
+          } else if (err.request) {
+            //The request was made but no response was received
+            console.log("network error");
+          } else {
+            console.log(err);
+          }
         });
     },
     direct(target) {

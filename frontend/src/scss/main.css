@@ -38,6 +38,9 @@ body {
   border-radius: 10px;
   border: 2px solid #fff;
 }
+#box .input .invalid {
+  color: red;
+}
 #box #submit {
   width: 80%;
   background: rgb(132, 188, 132);
