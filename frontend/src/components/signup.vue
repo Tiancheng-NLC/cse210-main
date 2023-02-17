@@ -15,6 +15,7 @@
         <input class="field" type="text" v-model="email" />
         <div class="invalid" v-if="isAlreadyExist">Email already exists</div>
         <div ckass="invalid" v-else-if="isWrongEmail">Invalid Email</div>
+        <div class="invalid" v-else-if="msg.email">{{ msg.email }}</div>
       </div>
       <br /><br />
       <!-- create password -->
@@ -52,7 +53,15 @@ export default {
       password: "",
       isAlreadyExist: false,
       isWrongEmail: false,
+      msg: [],
     };
+  },
+  watch: {
+    email(value) {
+      // binding this to the data value in the email input
+      this.email = value;
+      this.validateEmail(value);
+    }
   },
   methods: {
     signup() {
@@ -83,6 +92,14 @@ export default {
             console.log(err.response)
           }
         });
+    },
+    validateEmail(value){
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))
+      {
+        this.msg['email'] = '';
+      } else{
+        this.msg['email'] = 'Please enter a valid email address';
+      } 
     },
     direct(target) {
       this.$router.push("/" + target);
