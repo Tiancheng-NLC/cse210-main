@@ -37,7 +37,9 @@ export default {
       };
       var tempThis = this;
       axios
-          .post("http://localhost:5173/api/verifyUser", data)
+          .post("http://localhost:8080/api/forgotPassword", "", {headers: {
+            "email": this.email,
+          }})
           .then(function (response) {
             console.log(response);
             tempThis.$router.push("/");
