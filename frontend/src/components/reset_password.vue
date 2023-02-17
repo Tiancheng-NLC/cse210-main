@@ -20,7 +20,10 @@
       <!-- confirm new password -->
       <div class="input">
         <label>Confirm your new password</label>
-        <input class="field password" type="password" />
+        <input class="field password" type="password" v-model="confirm_pwd" />
+        <div class="invalid" v-show="!pwd_match">
+          Two passwords do not match, please check
+        </div>
       </div>
       <br /><br />
       <!-- reset button -->
@@ -36,11 +39,17 @@ export default {
     return {
       email: "",
       password: "",
+      confirm_pwd: "",
+      pwd_match: true,
       msg: [],
     };
   },
   methods: {
     reset() {
+      if (this.password !== this.confirm_pwd) {
+        this.pwd_match = false;
+        return;
+      }
       var tempThis = this;
       const data = {
         email: tempThis.$store.state.user,

@@ -14,8 +14,10 @@
           <img class="logo" src="../img/profile.png" alt="logo missing" />
         </div>
         <div id="profile_dropdown">
-          <button @click="direct('reset')">reset password</button>
-          <button @click="logout()">log out</button>
+          <span @click="direct('reset')">reset password</span>
+          <br />
+          <br />
+          <span @click="logout()">log out</span>
         </div>
       </div>
     </div>
@@ -85,6 +87,7 @@ body {
   float: right;
 }
 #profile_dropdown {
+  background-color: #fff;
   overflow: hidden;
   visibility: hidden;
   position: absolute;

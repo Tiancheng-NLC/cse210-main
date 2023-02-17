@@ -29,7 +29,10 @@
       <!-- confirm password -->
       <div class="input">
         <label>Confirm your password</label>
-        <input class="field password" type="password" />
+        <input class="field password" type="password" v-model="confirm_pwd" />
+        <div class="invalid" v-show="!pwd_match">
+          Two passwords do not match, please check
+        </div>
       </div>
       <br /><br />
       <!-- signup button -->
@@ -53,7 +56,9 @@ export default {
     return {
       email: "",
       password: "",
+      confirm_pwd: "",
       isAlreadyExist: false,
+      pwd_match: true,
       // isWrongEmail: false,
       msg: [],
     };
@@ -67,10 +72,14 @@ export default {
   },
   methods: {
     signup() {
+      if (this.password !== this.confirm_pwd) {
+        this.pwd_match = false;
+      }
       if (this.msg.email !== "") {
         console.log("cannot call api");
         return;
       }
+
       const data = {
         email: this.email,
         password: this.password,
