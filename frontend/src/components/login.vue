@@ -61,22 +61,14 @@ export default {
       axios
         .post("http://localhost:8080/api/verifyUser", data)
         .then(function (response) {
-          console.log(response);
-
-          //   if(response.status == 200){
-          //   alert
-          // }
-          // console.log(response.status);
-          // 200,400,500
-          // 200 success
-          // if(success){
-          //   this.$store.commit("setUser",code)
-          //   this.$router.push('')
-          // }
-          // tempThis.$router.push("/");
+          if (response.status == 200) {
+            tempThis.$store.commit("setUser", tempThis.email);
+            tempThis.$router.push("/");
+          }
         })
         .catch(function (err) {
-          if (err.response.status == 419) {
+          // console.log(err.status);
+          if (err.response) {
             // Request made and server responded
             tempThis.isEmailFail = true;
             console.log("server responded");
