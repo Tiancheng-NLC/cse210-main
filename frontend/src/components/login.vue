@@ -68,11 +68,12 @@ export default {
         })
         .catch(function (err) {
           // console.log(err.status);
-          if (err.response) {
+          if (err.response.status == 419) {
             // Request made and server responded
             tempThis.isEmailFail = true;
             console.log("server responded");
           } else if (err.response.status == 401){
+            tempThis.isEmailFail = false;
             tempThis.isPwdFail = true;
             console.log("server responded");
           } else if (err.request) {

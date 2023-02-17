@@ -43,7 +43,7 @@ export default {
         email: tempThis.$store.state.user,
         password: this.password,
       };
-      // var tempThis = this;
+      var tempThis = this;
       axios
         .post("http://localhost:8080/api/updateUser", data)
         .then(function (response) {
