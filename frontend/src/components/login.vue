@@ -63,6 +63,7 @@ export default {
         .then(function (response) {
           if (response.status == 200) {
             tempThis.$store.commit("setUser", tempThis.email);
+            tempThis.$store.commit("setLoggedIn", tempThis.email);
             tempThis.$router.push("/");
           }
         })

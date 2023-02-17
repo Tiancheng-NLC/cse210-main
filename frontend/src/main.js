@@ -10,16 +10,37 @@ import './scss/main.css'
 const store = new vuex.Store({
     state:{
         user:null,
+        isLoggedIn: false,
+        otp:null,
+        password: null,
     },
     mutations:{
         setUser(state,user){
             state.user=user;
         },
+        setOTP(state, otp){
+            state.otp = otp;
+        },
+        setPassword(state, password){
+            state.password = password;
+        },
+        setLoggedIn(state, status){
+            state.status = status;
+        }
     },
     getters:{
         isLoggedIn(state){
-            return state.user!==null;
+            return state.isLoggedIn;
         },
+        getOTP(state){
+            return state.otp;
+        },
+        getPassword(state){
+            return state.password;
+        },
+        getUser(state){
+            return state.user;
+        }
     }
 })
 

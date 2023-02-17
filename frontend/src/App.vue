@@ -4,6 +4,7 @@
       v-if="
         this.$route.path !== '/login' &&
         this.$route.path !== '/signup' &&
+        this.$route.path !== '/otp' &&
         this.$route.path !== '/forget' &&
         this.$route.path !== '/reset'
       "
@@ -12,6 +13,7 @@
     <Footer
       v-if="
         this.$route.path !== '/login' &&
+        this.$route.path !== '/otp' &&
         this.$route.path !== '/signup' &&
         this.$route.path !== '/forget' &&
         this.$route.path !== '/reset'

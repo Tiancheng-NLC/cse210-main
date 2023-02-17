@@ -4,11 +4,18 @@ import Home from "../components/homepage.vue";
 import Signup from "../components/signup.vue";
 import Forget from "../components/forget_password.vue";
 import Reset from "../components/reset_password.vue";
+import OTP from "../components/otp.vue";
+
 const routes=[
     {
         path: "/login",
         name: "login",
         component:Login,
+    },
+    {
+        path: "/otp",
+        name: "otp",
+        component:OTP,
     },
     {
         path: "/",

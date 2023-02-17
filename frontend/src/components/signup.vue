@@ -29,7 +29,7 @@
       </div>
       <br /><br />
       <!-- signup button -->
-      <button id="submit" @click="signup()">Sign up</button>
+      <button id="submit" @click="sendOTP()">Sign up</button>
       <br /><br />
       <!-- existed user -->
       <div id="old_user">
@@ -53,20 +53,17 @@ export default {
     };
   },
   methods: {
-    signup() {
-      const data = {
-        email: this.email,
-        password: this.password,
-      };
+    sendOTP() {
       var tempThis = this;
       axios
-        .post("http://localhost:8080/api/createUser", data)
+        .post("http://localhost:8080/api/emailOTP", "", {headers: {"email" : this.email}})
         .then(function (response) {
-          console.log(response);
-          // if(status code is 200){
-          //   do something
-          // }
-          // tempThis.$router.push("/");
+          if(response.status == 200){
+            tempThis.$store.commit("setUser", tempThis.email);
+            tempThis.$store.commit("setPassword", tempThis.password);
+            tempThis.$store.commit("setOTP", response.data);
+            tempThis.$router.push("/otp");
+          }
         })
         .catch(function (err) {
           if (err.response.status == 420) {
