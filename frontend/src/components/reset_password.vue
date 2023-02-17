@@ -9,12 +9,6 @@
     <h3>Reset Password</h3>
     <!-- main box -->
     <div id="box">
-      <!-- email -->
-      <div class="input">
-        <label>Please enter your email address</label>
-        <input class="field" type="text" v-model="email" />
-      </div>
-      <br /><br />
       <!-- new password -->
       <div class="input">
         <label>Enter a new password</label>
@@ -44,20 +38,19 @@ export default {
   },
   methods: {
     reset() {
+      var tempThis = this;
       const data = {
-        email: this.email,
+        email: tempThis.$store.state.user,
         password: this.password,
       };
-      // var tempThis = this;
+
       axios
         .post("http://localhost:8080/api/updateUser", data)
         .then(function (response) {
-          console.log(response);
-          // if(response.status == 200){
-          //   alert
-          // }
-
-          // tempThis.$router.push("/");
+          if (response.status == 200) {
+            // tempThis.$store.commit("setUser", );
+            tempThis.$router.push("/");
+          }
         })
         .catch(function (err) {
           console.log(err);
