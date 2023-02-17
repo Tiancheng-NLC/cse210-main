@@ -13,7 +13,7 @@
       <div class="input">
         Enter your email address to reset password
         <input class="field" type="text" v-model="email" />
-        <div class="invalid" v-show="isEmailFail">Email is not registered</div>
+        <div class="invalid" v-show="isEmailFail">Invalid Email</div>
       </div>
       <br /><br />
       <button id="submit" @click="forget()">Send</button>
@@ -49,7 +49,12 @@ export default {
               // Request made and server responded
               tempThis.isEmailFail = true;
               console.log("server responded");
-            } else if (err.request) {
+            } else if (err.response.status == 500) {
+              // Request made and server responded
+              tempThis.isEmailFail = true;
+              console.log("server responded");
+            }
+            else if (err.request) {
               console.log("network error");
             } else {
               console.log(err);

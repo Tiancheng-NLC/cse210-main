@@ -13,7 +13,8 @@
       <div class="input">
         <label>Please enter your email address</label>
         <input class="field" type="text" v-model="email" />
-        <div class="invalid" v-show="isAlreadyExist">Email already exists</div>
+        <div class="invalid" v-if="isAlreadyExist">Email already exists</div>
+        <div ckass="invalid" v-else-if="isWrongEmail">Invalid Email</div>
       </div>
       <br /><br />
       <!-- create password -->
@@ -50,6 +51,7 @@ export default {
       email: "",
       password: "",
       isAlreadyExist: false,
+      isWrongEmail: false,
     };
   },
   methods: {
@@ -73,6 +75,12 @@ export default {
             // Request made and server responded
             tempThis.isAlreadyExist = true;
             console.log("server responded");
+          } else if (err.response.status == 500){
+            tempThis.isAlreadyExist = false;
+            tempThis.isWrongEmail = true;
+            console.log(err.response);
+          } else {
+            console.log(err.response)
           }
         });
     },
