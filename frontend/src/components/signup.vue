@@ -1,4 +1,5 @@
 <template>
+  <form @submit.prevent="sendMessage">   
   <div id="signup">
     <!-- logo & app name -->
     <div id="top" @click="direct('')">
@@ -12,7 +13,7 @@
       <!-- email -->
       <div class="input">
         <label>Please enter your email address</label>
-        <input class="field" type="text" v-model="email" />
+        <input class="field" type="text" v-model="email" required/>
         <div class="invalid" v-if="isAlreadyExist">Email already exists</div>
         <!-- <div ckass="invalid" v-else-if="isWrongEmail">Invalid Email</div> -->
         <div class="invalid" v-else-if="msg.email">{{ msg.email }}</div>
@@ -21,7 +22,7 @@
       <!-- create password -->
       <div class="input">
         <label>Create a password</label>
-        <input class="field password" type="password" v-model="password" />
+        <input class="field password" type="password" v-model="password" required/>
         <input type="checkbox" @click="toggle()" />
         <strong>Show Password</strong>
       </div>
@@ -29,7 +30,7 @@
       <!-- confirm password -->
       <div class="input">
         <label>Confirm your password</label>
-        <input class="field password" type="password" v-model="confirm_pwd" />
+        <input class="field password" type="password" v-model="confirm_pwd" required/>
         <div class="invalid" v-show="!pwd_match">
           Two passwords do not match, please check
         </div>
@@ -47,6 +48,7 @@
       </div>
     </div>
   </div>
+  </form>>
 </template>
 
 <script>

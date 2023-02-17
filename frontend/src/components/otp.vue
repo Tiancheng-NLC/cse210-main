@@ -35,7 +35,7 @@ export default {
             otp: this.otp,
             incorrectOTP: false,
             resentOTP: false,
-            msg: "Please enter email sent to ".concat(this.$store.state.user),
+            msg: "Please enter the otp sent to ".concat(this.$store.state.user),
         };
     },
     methods: {
