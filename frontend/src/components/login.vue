@@ -78,6 +78,7 @@ export default {
         .then(function (response) {
           if (response.status == 200) {
             tempThis.$store.commit("setUser", tempThis.email);
+            tempThis.$store.commit("setLoggedIn", "loggedIn"); // just needs a non-null value input
             tempThis.$router.push("/");
           }
         })

@@ -4,6 +4,7 @@
       v-if="
         this.$route.path !== '/login' &&
         this.$route.path !== '/signup' &&
+        this.$route.path !== '/otp' &&
         this.$route.path !== '/forget' &&
         this.$route.path !== '/reset'
       "
@@ -13,6 +14,7 @@
       v-if="
         this.$route.path !== '/login' &&
         this.$route.path !== '/signup' &&
+        this.$route.path !== '/otp' &&
         this.$route.path !== '/forget' &&
         this.$route.path !== '/reset'
       "

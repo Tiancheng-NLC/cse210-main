@@ -41,6 +41,12 @@ body {
 #box .input .invalid {
   color: red;
 }
+#box .input .otp {
+  color: blue;
+}
+#box .input .resent {
+  color: blue;
+}
 #box #submit {
   width: 80%;
   background: rgb(132, 188, 132);

@@ -36,7 +36,7 @@
       </div>
       <br /><br />
       <!-- signup button -->
-      <button id="submit" @click="signup()">Sign up</button>
+      <button id="submit" @click="sendOTP()">Sign Up</button>
       <br /><br />
       <!-- existed user -->
       <div id="old_user">
@@ -71,26 +71,25 @@ export default {
     },
   },
   methods: {
-    signup() {
+    sendOTP() {
       if (this.password !== this.confirm_pwd) {
         this.pwd_match = false;
+        return;
       }
       if (this.msg.email !== "") {
         console.log("cannot call api");
         return;
       }
-
-      const data = {
-        email: this.email,
-        password: this.password,
-      };
       var tempThis = this;
       axios
-        .post("http://localhost:8080/api/createUser", data)
+        .post("http://localhost:8080/api/emailOTP", "", { headers: { "email": this.email } })
         .then(function (response) {
           console.log(response);
-          if (response.status == 200) {
-            tempThis.$router.push("/login");
+          if(response.status == 200){
+            tempThis.$store.commit("setUser", tempThis.email);
+            tempThis.$store.commit("setPassword", tempThis.password);
+            tempThis.$store.commit("setOTP", response.data);
+            tempThis.$router.push("/otp");
           }
         })
         .catch(function (err) {

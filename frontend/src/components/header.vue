@@ -40,12 +40,15 @@ export default {
   computed: {
     loggedIn() {
       var log = this.$store.getters.isLoggedIn;
+      console.log(log)
       return log;
     },
   },
   methods: {
     logout() {
       this.$store.commit("setUser", null);
+      this.$store.commit("setLoggedIn", null);
+      this.direct('/');
     },
     direct(target) {
       this.$router.push("/" + target);
