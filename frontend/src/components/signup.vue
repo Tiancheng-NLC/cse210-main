@@ -58,7 +58,7 @@ export default {
       };
       var tempThis = this;
       axios
-        .post("http://localhost:5173/api/createUser", data)
+        .post("http://localhost:8080/api/createUser", data)
         .then(function (response) {
           console.log(response);
           // if(status code is 200){

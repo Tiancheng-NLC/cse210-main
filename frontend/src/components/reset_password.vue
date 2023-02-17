@@ -50,12 +50,13 @@ export default {
       };
       // var tempThis = this;
       axios
-        .post("http://localhost:5173/api/updateUser", data)
+        .post("http://localhost:8080/api/updateUser", data)
         .then(function (response) {
           console.log(response);
-          // if(status code is 200){
-          //   do something
+          // if(response.status == 200){
+          //   alert
           // }
+
           // tempThis.$router.push("/");
         })
         .catch(function (err) {
