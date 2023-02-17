@@ -12,13 +12,15 @@
       <!-- new password -->
       <div class="input">
         <label>Enter a new password</label>
-        <input class="field" type="text" v-model="password" />
+        <input class="field password" type="password" v-model="password" />
+        <input type="checkbox" @click="toggle()" />
+        <strong>Show Password</strong>
       </div>
       <br /><br />
       <!-- confirm new password -->
       <div class="input">
         <label>Confirm your new password</label>
-        <input class="field" type="text" />
+        <input class="field password" type="password" />
       </div>
       <br /><br />
       <!-- reset button -->
@@ -34,6 +36,7 @@ export default {
     return {
       email: "",
       password: "",
+      msg: [],
     };
   },
   methods: {
@@ -54,18 +57,28 @@ export default {
         })
         .catch(function (err) {
           if (err.response.status == 419) {
-              // Request made and server responded
-              tempThis.isEmailFail = true;
-              console.log("server responded");
-            } else if (err.request) {
-              console.log("network error");
-            } else {
-              console.log(err);
-            }
+            // Request made and server responded
+            tempThis.isEmailFail = true;
+            console.log("server responded");
+          } else if (err.request) {
+            console.log("network error");
+          } else {
+            console.log(err);
+          }
         });
     },
     direct(target) {
       this.$router.push("/" + target);
+    },
+    toggle() {
+      var temp = document.getElementsByClassName("password");
+      for (var i = 0; i < temp.length; i++) {
+        if (temp[i].type === "password") {
+          temp[i].type = "text";
+        } else {
+          temp[i].type = "password";
+        }
+      }
     },
   },
 };

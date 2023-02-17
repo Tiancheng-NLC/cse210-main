@@ -14,6 +14,7 @@
         <label>Enter email</label>
         <input class="field" type="text" v-model="email" />
         <div class="invalid" v-show="isEmailFail">Invalid Email</div>
+        <div class="invalid" v-if="msg.email">{{ msg.email }}</div>
       </div>
       <br /><br />
       <!-- password -->
@@ -22,7 +23,9 @@
           <label>Password</label>
           <router-link to="/forget">Forgot password?</router-link>
         </div>
-        <input class="field" type="text" v-model="password" />
+        <input class="field" id="password" type="password" v-model="password" />
+        <input type="checkbox" @click="toggle()" />
+        <strong>Show Password</strong>
         <div class="invalid" v-show="isPwdFail">Incorrect password</div>
       </div>
       <br /><br />
@@ -49,10 +52,22 @@ export default {
       password: "",
       isEmailFail: false,
       isPwdFail: false,
+      msg: [],
     };
+  },
+  watch: {
+    email(value) {
+      // binding this to the data value in the email input
+      this.email = value;
+      this.validateEmail(value);
+    },
   },
   methods: {
     login() {
+      if (this.msg.email !== "") {
+        console.log("cannot call api");
+        return;
+      }
       const data = {
         email: this.email,
         password: this.password,
@@ -72,7 +87,7 @@ export default {
             // Request made and server responded
             tempThis.isEmailFail = true;
             console.log("server responded");
-          } else if (err.response.status == 401){
+          } else if (err.response.status == 401) {
             tempThis.isEmailFail = false;
             tempThis.isPwdFail = true;
             console.log("server responded");
@@ -84,8 +99,23 @@ export default {
           }
         });
     },
+    validateEmail(value) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+        this.msg["email"] = "";
+      } else {
+        this.msg["email"] = "Please enter a valid email address";
+      }
+    },
     direct(target) {
       this.$router.push("/" + target);
+    },
+    toggle() {
+      var temp = document.getElementById("password");
+      if (temp.type === "password") {
+        temp.type = "text";
+      } else {
+        temp.type = "password";
+      }
     },
   },
 };

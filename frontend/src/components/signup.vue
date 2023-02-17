@@ -14,20 +14,22 @@
         <label>Please enter your email address</label>
         <input class="field" type="text" v-model="email" />
         <div class="invalid" v-if="isAlreadyExist">Email already exists</div>
-        <div ckass="invalid" v-else-if="isWrongEmail">Invalid Email</div>
+        <!-- <div ckass="invalid" v-else-if="isWrongEmail">Invalid Email</div> -->
         <div class="invalid" v-else-if="msg.email">{{ msg.email }}</div>
       </div>
       <br /><br />
       <!-- create password -->
       <div class="input">
         <label>Create a password</label>
-        <input class="field" type="text" v-model="password" />
+        <input class="field password" type="password" v-model="password" />
+        <input type="checkbox" @click="toggle()" />
+        <strong>Show Password</strong>
       </div>
       <br /><br />
       <!-- confirm password -->
       <div class="input">
         <label>Confirm your password</label>
-        <input class="field" type="text" />
+        <input class="field password" type="password" />
       </div>
       <br /><br />
       <!-- signup button -->
@@ -52,7 +54,7 @@ export default {
       email: "",
       password: "",
       isAlreadyExist: false,
-      isWrongEmail: false,
+      // isWrongEmail: false,
       msg: [],
     };
   },
@@ -61,10 +63,14 @@ export default {
       // binding this to the data value in the email input
       this.email = value;
       this.validateEmail(value);
-    }
+    },
   },
   methods: {
     signup() {
+      if (this.msg.email !== "") {
+        console.log("cannot call api");
+        return;
+      }
       const data = {
         email: this.email,
         password: this.password,
@@ -74,35 +80,43 @@ export default {
         .post("http://localhost:8080/api/createUser", data)
         .then(function (response) {
           console.log(response);
-          // if(status code is 200){
-          //   do something
-          // }
-          // tempThis.$router.push("/");
+          if (response.status == 200) {
+            tempThis.$router.push("/login");
+          }
         })
         .catch(function (err) {
           if (err.response.status == 420) {
             // Request made and server responded
             tempThis.isAlreadyExist = true;
             console.log("server responded");
-          } else if (err.response.status == 500){
+          } else if (err.response.status == 500) {
             tempThis.isAlreadyExist = false;
             tempThis.isWrongEmail = true;
             console.log(err.response);
           } else {
-            console.log(err.response)
+            console.log(err.response);
           }
         });
     },
-    validateEmail(value){
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))
-      {
-        this.msg['email'] = '';
-      } else{
-        this.msg['email'] = 'Please enter a valid email address';
-      } 
+    validateEmail(value) {
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+        this.msg["email"] = "";
+      } else {
+        this.msg["email"] = "Please enter a valid email address";
+      }
     },
     direct(target) {
       this.$router.push("/" + target);
+    },
+    toggle() {
+      var temp = document.getElementsByClassName("password");
+      for (var i = 0; i < temp.length; i++) {
+        if (temp[i].type === "password") {
+          temp[i].type = "text";
+        } else {
+          temp[i].type = "password";
+        }
+      }
     },
   },
 };
