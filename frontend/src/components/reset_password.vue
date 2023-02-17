@@ -48,7 +48,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      // var tempThis = this;
+      var tempThis = this;
       axios
         .post("http://localhost:8080/api/updateUser", data)
         .then(function (response) {
@@ -60,7 +60,15 @@ export default {
           // tempThis.$router.push("/");
         })
         .catch(function (err) {
-          console.log(err);
+          if (err.response.status == 419) {
+              // Request made and server responded
+              tempThis.isEmailFail = true;
+              console.log("server responded");
+            } else if (err.request) {
+              console.log("network error");
+            } else {
+              console.log(err);
+            }
         });
     },
     direct(target) {

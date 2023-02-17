@@ -13,6 +13,7 @@
       <div class="input">
         <label>Please enter your email address</label>
         <input class="field" type="text" v-model="email" />
+        <div class="invalid" v-show="isAlreadyExist">Email already exists</div>
       </div>
       <br /><br />
       <!-- create password -->
@@ -48,6 +49,7 @@ export default {
     return {
       email: "",
       password: "",
+      isAlreadyExist: false,
     };
   },
   methods: {
@@ -67,7 +69,11 @@ export default {
           // tempThis.$router.push("/");
         })
         .catch(function (err) {
-          console.log(err);
+          if (err.response.status == 420) {
+            // Request made and server responded
+            tempThis.isAlreadyExist = true;
+            console.log("server responded");
+          }
         });
     },
     direct(target) {

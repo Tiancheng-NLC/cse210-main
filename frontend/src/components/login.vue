@@ -13,7 +13,7 @@
       <div class="input">
         <label>Enter email</label>
         <input class="field" type="text" v-model="email" />
-        <label class="invalid" v-show="isLoginFail">Invalid Email</label>
+        <div class="invalid" v-show="isEmailFail">Invalid Email</div>
       </div>
       <br /><br />
       <!-- password -->
@@ -23,7 +23,7 @@
           <router-link to="/forget">Forgot password?</router-link>
         </div>
         <input class="field" type="text" v-model="password" />
-        <label class="invalid" v-show="isLoginFail">Incorrect password</label>
+        <div class="invalid" v-show="isPwdFail">Incorrect password</div>
       </div>
       <br /><br />
       <!-- login button -->
@@ -47,7 +47,8 @@ export default {
     return {
       email: "",
       password: "",
-      isLoginFail: false,
+      isEmailFail: false,
+      isPwdFail: false,
     };
   },
   methods: {
@@ -75,12 +76,12 @@ export default {
           // tempThis.$router.push("/");
         })
         .catch(function (err) {
-          // console.log(err.status);
-          if (err.response) {
+          if (err.response.status == 419) {
             // Request made and server responded
-            this.isLoginFail = true;
-            console.log(error.response.status);
-            console.log(error.response.headers);
+            tempThis.isEmailFail = true;
+            console.log("server responded");
+          } else if (err.response.status == 401){
+            tempThis.isPwdFail = true;
             console.log("server responded");
           } else if (err.request) {
             //The request was made but no response was received
