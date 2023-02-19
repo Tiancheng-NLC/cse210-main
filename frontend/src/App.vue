@@ -4,8 +4,9 @@
       v-if="
         this.$route.path !== '/login' &&
         this.$route.path !== '/signup' &&
-        this.$route.path !== '/otp' &&
-        this.$route.path !== '/forget' &&
+        this.$route.path !== '/otp_signup' &&
+        this.$route.path !== '/otp_forgot_password' &&
+        this.$route.path !== '/forgot' &&
         this.$route.path !== '/reset'
       "
     />
@@ -14,8 +15,9 @@
       v-if="
         this.$route.path !== '/login' &&
         this.$route.path !== '/signup' &&
-        this.$route.path !== '/otp' &&
-        this.$route.path !== '/forget' &&
+        this.$route.path !== '/otp_signup' &&
+        this.$route.path !== '/otp_forgot_password' &&
+        this.$route.path !== '/forgot' &&
         this.$route.path !== '/reset'
       "
     />

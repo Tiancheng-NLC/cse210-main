@@ -21,7 +21,7 @@
       <div class="input">
         <div id="QA">
           <label>Password</label>
-          <router-link to="/forget">Forgot password?</router-link>
+          <router-link to="/forgot">Forgot password?</router-link>
         </div>
         <input class="field" id="password" type="password" v-model="password" />
         <input type="checkbox" @click="toggle()" />

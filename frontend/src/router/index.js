@@ -2,9 +2,10 @@ import {createWebHistory,createRouter} from "vue-router";
 import Login from "../components/login.vue";
 import Home from "../components/homepage.vue";
 import Signup from "../components/signup.vue";
-import Forget from "../components/forget_password.vue";
+import Forgot from "../components/forgot_password.vue";
 import Reset from "../components/reset_password.vue";
-import OTP from "../components/otp.vue";
+import OTPSignup from "../components/otp_signup.vue";
+import OTPForgotPassword from "../components/otp_forgot_password.vue";
 
 const routes=[
     {
@@ -18,9 +19,14 @@ const routes=[
         component:Home,
     },
     {
-        path: "/otp",
-        name: "otp",
-        component:OTP,
+        path: "/otp_signup",
+        name: "otp_signup",
+        component:OTPSignup,
+    },
+    {
+        path: "/otp_forgot_password",
+        name: "otp_forgot_password",
+        component:OTPForgotPassword,
     },
     {
         path: "/signup",
@@ -28,9 +34,9 @@ const routes=[
         component:Signup,
     },
     {
-        path: "/forget",
-        name: "forget-password",
-        component:Forget,
+        path: "/forgot",
+        name: "forgot-password",
+        component:Forgot,
     },
     {
         path: "/reset",

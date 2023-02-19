@@ -91,7 +91,7 @@ export default {
             tempThis.$store.commit("setUser", tempThis.email);
             tempThis.$store.commit("setPassword", tempThis.password);
             tempThis.$store.commit("setOTP", response.data);
-            tempThis.$router.push("/otp");
+            tempThis.$router.push("/otp_signup");
           }
         })
         .catch(function (err) {

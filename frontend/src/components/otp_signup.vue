@@ -1,5 +1,5 @@
 <template>
-    <div id="otp">
+    <div id="otpsignup">
         <!-- logo & app name -->
         <div id="top" @click="direct('')">
             <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
@@ -13,12 +13,12 @@
             <div class="input">
                 <div class="otp">{{msg}}</div>
                 <input class="field" type="text" v-model="otp" />
-                <div class="invalid" v-show="incorrectOTP">Incorrect OTP</div>
-                <div class="resent" v-show="resentOTP">Resent OTP</div>
+                <div class="invalid" v-show="incorrectOTP">Incorrect Code</div>
+                <div class="resent" v-show="resentOTP">Resent Code</div>
             </div>
             <br />
             <!-- resent OTP button -->
-            <button id="submit" @click="sendOTP()">Resend OTP</button>
+            <button id="submit" @click="sendOTP()">Resend Code</button>
             <!-- signup button -->
             <br /> <br />
             <button id="submit" @click="signUp()">Submit</button>
@@ -35,7 +35,7 @@ export default {
             otp: this.otp,
             incorrectOTP: false,
             resentOTP: false,
-            msg: "Please enter the otp sent to ".concat(this.$store.state.user),
+            msg: "Please enter the code sent to ".concat(this.$store.state.user),
         };
     },
     methods: {

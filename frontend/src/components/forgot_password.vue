@@ -1,5 +1,5 @@
 <template>
-  <div id="forget">
+  <div id="forgot">
     <!-- logo & app name -->
     <div id="top" @click="direct('')">
       <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
@@ -11,12 +11,12 @@
     <div id="box">
       <!-- email -->
       <div class="input">
-        Enter your email address to reset password
+        Enter your email address registered with Roomie
         <input class="field" type="text" v-model="email" />
-        <div class="invalid" v-show="isEmailFail">Invalid Email</div>
+        <div class="invalid" v-show="isEmailFail">Provided email is not registered with Roomie</div>
       </div>
       <br /><br />
-      <button id="submit" @click="forget()">Send</button>
+      <button id="submit" @click="forgot()">Send</button>
     </div>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     };
   },
   methods: {
-    forget(){
+    forgot(){
        const data = {
         email: this.email
       };
@@ -41,8 +41,11 @@ export default {
             "email": this.email,
           }})
           .then(function (response) {
-            console.log(response);
-            tempThis.$router.push("/");
+            if(response.status == 200){
+              tempThis.$store.commit("setUser", tempThis.email);
+              tempThis.$store.commit("setOTP", response.data);
+              tempThis.$router.push("/otp_forgot_password");
+            }
           })
           .catch(function (err) {
             if (err.response.status == 419) {
