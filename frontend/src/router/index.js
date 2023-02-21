@@ -4,6 +4,7 @@ import Home from "../components/homepage.vue";
 import Signup from "../components/signup.vue";
 import Forgot from "../components/forgot_password.vue";
 import Reset from "../components/reset_password.vue";
+import Profile from "../components/profile.vue";
 import OTPSignup from "../components/otp_signup.vue";
 import OTPForgotPassword from "../components/otp_forgot_password.vue";
 
@@ -42,6 +43,11 @@ const routes=[
         path: "/reset",
         name: "reset-password",
         component:Reset,
+    },
+    {
+        path: "/profile",
+        name: "profile",
+        component:Profile,
     },
 ];
 const router=createRouter({

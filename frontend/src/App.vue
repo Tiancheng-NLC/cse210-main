@@ -7,7 +7,8 @@
         this.$route.path !== '/otp_signup' &&
         this.$route.path !== '/otp_forgot_password' &&
         this.$route.path !== '/forgot' &&
-        this.$route.path !== '/reset'
+        this.$route.path !== '/reset' &&
+        this.$route.path !== '/profile'
       "
     />
     <router-view></router-view>
@@ -18,7 +19,8 @@
         this.$route.path !== '/otp_signup' &&
         this.$route.path !== '/otp_forgot_password' &&
         this.$route.path !== '/forgot' &&
-        this.$route.path !== '/reset'
+        this.$route.path !== '/reset' &&
+        this.$route.path !== '/profile'
       "
     />
   </div>

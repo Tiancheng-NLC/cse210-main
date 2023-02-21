@@ -14,10 +14,11 @@
           <img class="logo" src="../img/profile.png" alt="logo missing" />
         </div>
         <div id="profile_dropdown">
-          <span @click="direct('reset')">reset password</span>
-          <br />
-          <br />
-          <span @click="logout()">log out</span>
+          <span @click="direct('profile')">Edit profile</span>
+          <br /><br />
+          <span @click="direct('reset')">Reset password</span>
+          <br /><br />
+          <span @click="logout()">Log out</span>
         </div>
       </div>
     </div>
@@ -40,7 +41,7 @@ export default {
   computed: {
     loggedIn() {
       var log = this.$store.getters.isLoggedIn;
-      console.log(log)
+      console.log(log);
       return log;
     },
   },
@@ -48,7 +49,7 @@ export default {
     logout() {
       this.$store.commit("setUser", null);
       this.$store.commit("setLoggedIn", null);
-      this.direct('/');
+      this.direct("/");
     },
     direct(target) {
       this.$router.push("/" + target);
