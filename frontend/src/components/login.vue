@@ -1,4 +1,5 @@
 <template>
+  <form @submit.prevent="sendMessage">   
   <div id="login">
     <!-- logo & app name -->
     <div id="top" @click="direct('')">
@@ -12,8 +13,8 @@
       <!-- email -->
       <div class="input">
         <label>Enter email</label>
-        <input class="field" type="text" v-model="email" />
-        <div class="invalid" v-show="isEmailFail">Invalid Email</div>
+        <input class="field" type="text" v-model="email" required/>
+        <div class="invalid" v-show="isEmailFail">Provided email is not registered with Roomie</div>
         <div class="invalid" v-if="msg.email">{{ msg.email }}</div>
       </div>
       <br /><br />
@@ -23,7 +24,7 @@
           <label>Password</label>
           <router-link to="/forgot">Forgot password?</router-link>
         </div>
-        <input class="field" id="password" type="password" v-model="password" />
+        <input class="field" id="password" type="password" v-model="password" required/>
         <input type="checkbox" @click="toggle()" />
         <strong>Show Password</strong>
         <div class="invalid" v-show="isPwdFail">Incorrect password</div>
@@ -32,6 +33,7 @@
       <!-- login button -->
       <button id="submit" @click="login()">Log in</button>
       <br /><br />
+      <div class="invalid" v-if="serverError" style="color:red;">Server Error. Please contact roomieorganisation@gmail.com to get further help.</div>
       <!-- new user -->
       <div id="new_user">
         <div id="QA">
@@ -41,6 +43,7 @@
       </div>
     </div>
   </div>
+  </form>
 </template>
 
 <script>
@@ -52,6 +55,7 @@ export default {
       password: "",
       isEmailFail: false,
       isPwdFail: false,
+      serverError: false,
       msg: [],
     };
   },
@@ -64,7 +68,10 @@ export default {
   },
   methods: {
     login() {
-      if (this.msg.email !== "") {
+      if(this.password === ""){ // password empty then do not make API call
+        return;
+      }
+      if (this.msg.email !== "") { // if invalid email then don't make API call
         console.log("cannot call api");
         return;
       }
@@ -92,11 +99,9 @@ export default {
             tempThis.isEmailFail = false;
             tempThis.isPwdFail = true;
             console.log("server responded");
-          } else if (err.request) {
-            //The request was made but no response was received
-            console.log("network error");
           } else {
-            console.log(err);
+            tempThis.serverError = true;
+            console.log("server error")
           }
         });
     },

@@ -23,6 +23,7 @@
             <br /> <br />
             <button id="submit" @click="resetPassword()">Submit</button>
             <br /><br />
+            <div class="invalid" v-if="serverError" style="color:red;">Server Error. Please contact roomieorganisation@gmail.com to get further help.</div>
         </div>
     </div>
 </template>
@@ -36,6 +37,7 @@ export default {
             incorrectOTP: false,
             resentOTP: false,
             msg: "Please enter the code sent to ".concat(this.$store.state.user),
+            serverError: false,
         };
     },
     methods: {
@@ -66,6 +68,7 @@ export default {
                     }
                 })
                 .catch(function (err) {
+                    tempThis.serverError = true;
                     console.log("Error on Server")
                 });
             tempThis.resentOTP = true;

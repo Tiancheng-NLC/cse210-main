@@ -38,6 +38,9 @@
       <br /><br />
       <!-- signup button -->
       <button id="submit" @click="sendOTP()">Sign Up</button>
+      <br /> <br />
+      <div class="invalid" v-if="serverError" style="color:red;">Server Error. Please contact roomieorganisation@gmail.com to get further help.</div>
+
       <br /><br />
       <!-- existed user -->
       <div id="old_user">
@@ -48,7 +51,7 @@
       </div>
     </div>
   </div>
-  </form>>
+  </form>
 </template>
 
 <script>
@@ -60,6 +63,7 @@ export default {
       password: "",
       confirm_pwd: "",
       isAlreadyExist: false,
+      serverError: false,
       pwd_match: true,
       // isWrongEmail: false,
       msg: [],
@@ -74,11 +78,16 @@ export default {
   },
   methods: {
     sendOTP() {
-      if (this.password !== this.confirm_pwd) {
-        this.pwd_match = false;
+      if(this.password === "" || this.confirm_pwd === ""){ // passwords empty then do not make API call
         return;
       }
-      if (this.msg.email !== "") {
+      if (this.password !== this.confirm_pwd) { // passwords don't match then don't make API call
+        this.pwd_match = false;
+        return;
+      } else {
+        this.pwd_match = true;
+      }
+      if (this.msg.email !== "") { // if invalid email then don't make API call
         console.log("cannot call api");
         return;
       }
@@ -99,11 +108,9 @@ export default {
             // Request made and server responded
             tempThis.isAlreadyExist = true;
             console.log("server responded");
-          } else if (err.response.status == 500) {
-            tempThis.isAlreadyExist = false;
-            tempThis.isWrongEmail = true;
-            console.log(err.response);
           } else {
+            tempThis.isAlreadyExist = false;
+            tempThis.serverError = true;
             console.log(err.response);
           }
         });
