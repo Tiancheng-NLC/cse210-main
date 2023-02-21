@@ -138,7 +138,7 @@
           </select>
         </div>
         <br />
-        <!-- next button -->
+        <!-- submit button -->
         <button id="submit" @click="submit">Submit</button>
         <br /><br />
       </div>
@@ -168,6 +168,24 @@ export default {
       private: "",
     };
   },
+  // if user already have profile, show it
+  mounted() {
+    var profile = this.$store.getters.getProfile;
+    this.name = profile.name;
+    this.email = profile.email;
+    this.age = profile.age;
+    this.gender = profile.gender;
+    this.nationality = profile.nationality;
+    this.occupation = profile.occupation;
+    this.min_budget = profile.min_budget;
+    this.max_budget = profile.max_budget;
+    this.smoking = profile.smoking;
+    this.pet = profile.pet;
+    this.food = profile.food;
+    this.sleep1 = profile.sleep_rise;
+    this.sleep2 = profile.sleep_sleep;
+    this.private = profile.isPrivate;
+  },
   methods: {
     submit() {
       const data = {
@@ -186,7 +204,27 @@ export default {
         sleep_sleep: this.sleep2,
         isPrivate: this.private,
       };
-      console.log(data);
+
+      // identify empty input
+      for (var key in data) {
+        if (data[key] == null || data[key] == "") {
+          return;
+        }
+      }
+      var tempThis = this;
+      tempThis.$store.commit("setProfile", data);
+      this.$router.push("/");
+      // axios
+      //   .post("http://localhost:8080/api/updateProfile", data)
+      //   .then(function (response) {
+      //     if (response.status == 200) {
+      //       tempThis.$store.commit("setProfile", data);
+      //       this.$router.push("/");
+      //     }
+      //   })
+      //   .catch(function (err) {
+      //     console.log("Error on Server.");
+      //   });
     },
     direct(target) {
       this.$router.push("/" + target);
@@ -200,7 +238,7 @@ export default {
   font-size: small;
 }
 #box {
-  background-color: #ededed;
+  background-color: #e5e5e5;
 }
 .profile_input {
   text-align: left;

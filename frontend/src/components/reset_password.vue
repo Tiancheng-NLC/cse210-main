@@ -1,37 +1,56 @@
 <template>
-  <form @submit.prevent="sendMessage">   
-  <div id="reset">
-    <!-- logo & app name -->
-    <div id="top" @click="direct('')">
-      <img class="logo" src="../img/logo.png" alt="logo missing" width="150"/>
-    </div>
-    <!-- title -->
-    <h3>Reset Password</h3>
-    <!-- main box -->
-    <div id="box">
-      <!-- new password -->
-      <div class="input">
-        <label>Enter a new password</label>
-        <input class="field password" type="password" v-model="password" required/>
-        <input type="checkbox" @click="toggle()" />
-        <strong>Show Password</strong>
+  <form @submit.prevent="sendMessage">
+    <div id="reset">
+      <!-- logo & app name -->
+      <div id="top">
+        <img
+          @click="direct('')"
+          class="logo"
+          src="../img/logo.png"
+          alt="logo missing"
+          width="150"
+        />
       </div>
-      <br /><br />
-      <!-- confirm new password -->
-      <div class="input">
-        <label>Confirm your new password</label>
-        <input class="field password" type="password" v-model="confirm_pwd" required/>
-        <div class="invalid" v-show="!pwd_match">
-          Two passwords do not match, please check
+      <!-- title -->
+      <h3>Reset Password</h3>
+      <!-- main box -->
+      <div id="box">
+        <!-- new password -->
+        <div class="input">
+          <label>Enter a new password</label>
+          <input
+            class="field password"
+            type="password"
+            v-model="password"
+            required
+          />
+          <input type="checkbox" @click="toggle()" />
+          <strong>Show Password</strong>
+        </div>
+        <br /><br />
+        <!-- confirm new password -->
+        <div class="input">
+          <label>Confirm your new password</label>
+          <input
+            class="field password"
+            type="password"
+            v-model="confirm_pwd"
+            required
+          />
+          <div class="invalid" v-show="!pwd_match">
+            Two passwords do not match, please check
+          </div>
+        </div>
+        <br /><br />
+        <!-- reset button -->
+        <button id="submit" @click="reset()">Reset</button>
+        <br /><br />
+        <div class="invalid" v-if="serverError" style="color: red">
+          Server Error. Please contact roomieorganisation@gmail.com to get
+          further help.
         </div>
       </div>
-      <br /><br />
-      <!-- reset button -->
-      <button id="submit" @click="reset()">Reset</button>
-      <br /><br />
-      <div class="invalid" v-if="serverError" style="color:red;">Server Error. Please contact roomieorganisation@gmail.com to get further help.</div>
     </div>
-  </div>
   </form>
 </template>
 
@@ -50,7 +69,7 @@ export default {
   },
   methods: {
     reset() {
-      if(this.password === "" || this.confirm_pwd === ""){
+      if (this.password === "" || this.confirm_pwd === "") {
         return;
       }
       if (this.password !== this.confirm_pwd) {
