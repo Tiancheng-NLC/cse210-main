@@ -2,8 +2,7 @@
     <div id="otpsignup">
         <!-- logo & app name -->
         <div id="top" @click="direct('')">
-            <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
-            <h2>Roomie</h2>
+        <img class="logo" src="../img/logo.png" alt="logo missing" width="150"/>
         </div>
         <!-- title -->
         <h3>Welcome to Roomie!</h3>
@@ -23,6 +22,7 @@
             <br /> <br />
             <button id="submit" @click="signUp()">Submit</button>
             <br /><br />
+            <div class="invalid" v-if="serverError" style="color:red;">Server Error. Please contact roomieorganisation@gmail.com to get further help.</div>
         </div>
     </div>
 </template>
@@ -36,6 +36,7 @@ export default {
             incorrectOTP: false,
             resentOTP: false,
             msg: "Please enter the code sent to ".concat(this.$store.state.user),
+            serverError: false,
         };
     },
     methods: {
@@ -57,6 +58,7 @@ export default {
                     })
                     .catch(function (err) {                        
                         console.log("Error on Server.");
+                        tempThis.serverError = true;
                     });
             } else {
                 tempThis.incorrectOTP = true;
@@ -77,6 +79,7 @@ export default {
                 })
                 .catch(function (err) {
                     console.log("Error on Server")
+                    tempThis.serverError = true;
                 });
             tempThis.resentOTP = true;
         }
