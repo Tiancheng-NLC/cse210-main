@@ -3,8 +3,7 @@
   <div id="reset">
     <!-- logo & app name -->
     <div id="top" @click="direct('')">
-      <img class="logo" src="../img/logo.png" alt="logo missing" width="80" />
-      <h2>Roomie</h2>
+      <img class="logo" src="../img/logo.png" alt="logo missing" width="150"/>
     </div>
     <!-- title -->
     <h3>Reset Password</h3>

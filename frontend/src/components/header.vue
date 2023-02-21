@@ -29,8 +29,8 @@
     </div>
     <!-- center section -->
     <div id="center_header" @click="direct('')">
-      <img class="logo" src="../img/logo.png" alt="logo missing" />
-      <span class="app_name"> Roomie</span>
+      <img class="roomie-logo" src="../img/logo.png" alt="logo missing" />
+      <!-- <span class="app_name"> Roomie</span> -->
     </div>
   </div>
 </template>
@@ -76,18 +76,20 @@ body {
   text-align: center;
   padding-left: 50px;
   padding-right: 50px;
-  padding-top: 2.5vh;
   height: 12vh;
 }
 #left_header {
   float: left;
+  padding-top: 2.5vh;
 }
 #center_header {
   width: 15%;
   margin: 0px auto;
+  padding-top: auto;
 }
 #right_header {
   float: right;
+  padding-top: 2.5vh;
 }
 #profile_dropdown {
   background-color: #fff;
@@ -103,10 +105,18 @@ body {
   width: 66px;
   height: auto;
 }
+.roomie-logo {
+  width: 150px;
+  height: auto;
+}
 .app_name {
-  color: #69b99d;
-  font-size: x-large;
+  color: #0e7242;
+  font-size: xxx-large;
   font-weight: bold;
+  font-family: arial;
+  padding-top: 0;
+  margin-top: 0;
+  vertical-align: top;
 }
 button {
   background-color: #fff;
