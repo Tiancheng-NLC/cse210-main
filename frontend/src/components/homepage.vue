@@ -16,12 +16,12 @@
           </div>
         </div>
       </span>
+      <div id="search"></div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -60,26 +60,6 @@ export default {
         },
       ],
     };
-  },
-  // get existing user profile
-  mounted() {
-    var temp = this;
-    // if logged in, get profile
-    if (temp.$store.getters.isLoggedIn) {
-      var Email = temp.$store.getters.getUser;
-      axios
-        .get("http://localhost:8080/api/getRoomieProfile", "", {
-          headers: { email: Email },
-        })
-        .then(function (response) {
-          if (response.status == 200) {
-            console.log(response);
-          }
-        })
-        .catch(function (err) {
-          console.log("no user profile");
-        });
-    }
   },
 };
 </script>

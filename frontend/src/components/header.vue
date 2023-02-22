@@ -39,18 +39,39 @@
 
 <script>
 export default {
+  // data() {
+  //   return {
+  //     loggedIn: this.$store.getters.isLoggedIn,
+  //   };
+  // },
   computed: {
     loggedIn() {
       var log = this.$store.getters.isLoggedIn;
-      console.log(log);
       return log;
+      // console.log(log);
+      // console.log(localStorage.getItem("login"));
+      // if (log == true) {
+      //   console.log("first");
+      //   localStorage.setItem("login", "true");
+      //   return log;
+      // } else {
+      //   if (localStorage.getItem("login") == "true") {
+      //     this.$store.commit("setLoggedIn", "loggedin");
+      //     console.log("second");
+      //     return log;
+      //   } else {
+      //     console.log("third");
+      //     return log;
+      //   }
+      // }
     },
   },
+
   methods: {
     logout() {
       this.$store.commit("setUser", null);
       this.$store.commit("setLoggedIn", null);
-      this.direct("/");
+      this.direct("");
     },
     direct(target) {
       this.$router.push("/" + target);
