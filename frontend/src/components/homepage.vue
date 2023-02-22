@@ -3,30 +3,64 @@
     <div id="home_search">
       <span>Let's find your dream roommates</span>
       <br />
-      <div class="w-25 d-inline-block">
-        <div class="card">
+      <span id="cards" v-for="user in users" :key="user.id">
+        <div class="card w-25 d-inline-block">
           <div class="card-body">
-            <h5 class="card-title">title</h5>
-            <h5 class="card-text">text</h5>
-            <button class="btn btn-primary">Go somewhere</button>
+            <h5 class="card-title">{{ user.name }}</h5>
+            <h5 class="card-text">
+              {{ user.age }} years ({{ user.gender }})
+              <br />
+              rent:{{ user.rent_min }} to {{ user.rent_max }}
+            </h5>
+            <button class="btn btn-primary">View details</button>
           </div>
         </div>
-      </div>
-      <div class="w-25 d-inline-block">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">title</h5>
-            <h5 class="card-text">text</h5>
-            <button class="btn btn-primary">Go somewhere</button>
-          </div>
-        </div>
-      </div>
+      </span>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      users: [
+        {
+          id: 1,
+          name: "Alice",
+          age: 24,
+          gender: "Female",
+          rent_min: 1000,
+          rent_max: 2000,
+        },
+        {
+          id: 2,
+          name: "Bill",
+          age: 24,
+          gender: "Male",
+          rent_min: 1000,
+          rent_max: 2000,
+        },
+        {
+          id: 2,
+          name: "Bill",
+          age: 24,
+          gender: "Male",
+          rent_min: 1000,
+          rent_max: 2000,
+        },
+        {
+          id: 2,
+          name: "Bill",
+          age: 24,
+          gender: "Male",
+          rent_min: 1000,
+          rent_max: 2000,
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -38,11 +72,10 @@ export default {};
 #home_search {
   text-align: center;
   position: relative;
-  /* top: 3%; */
   font-size: 60px;
   font-weight: bolder;
 }
-#search {
-  background-color: #fff;
+#cards {
+  width: 100%;
 }
 </style>

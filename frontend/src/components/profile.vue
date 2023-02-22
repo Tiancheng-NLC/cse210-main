@@ -148,7 +148,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -214,17 +214,16 @@ export default {
       var tempThis = this;
       tempThis.$store.commit("setProfile", data);
       this.$router.push("/");
-      // axios
-      //   .post("http://localhost:8080/api/updateProfile", data)
-      //   .then(function (response) {
-      //     if (response.status == 200) {
-      //       tempThis.$store.commit("setProfile", data);
-      //       this.$router.push("/");
-      //     }
-      //   })
-      //   .catch(function (err) {
-      //     console.log("Error on Server.");
-      //   });
+      axios
+        .post("http://localhost:8080/api/createRoomieProfile", data)
+        .then(function (response) {
+          if (response.status == 200) {
+            console.log(response);
+          }
+        })
+        .catch(function (err) {
+          console.log("Error on Server.");
+        });
     },
     direct(target) {
       this.$router.push("/" + target);
