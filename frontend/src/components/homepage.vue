@@ -1,12 +1,33 @@
 <template>
   <div id="home">
     <div id="home_search">
-      <span>Let's find your dream home</span>
+      <span>Let's find your dream roommates</span>
       <br />
-      <div id="search">92092</div>
+      <div class="w-25 d-inline-block">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">title</h5>
+            <h5 class="card-text">text</h5>
+            <button class="btn btn-primary">Go somewhere</button>
+          </div>
+        </div>
+      </div>
+      <div class="w-25 d-inline-block">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">title</h5>
+            <h5 class="card-text">text</h5>
+            <button class="btn btn-primary">Go somewhere</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {};
+</script>
 
 <style scoped>
 #home {
@@ -17,7 +38,7 @@
 #home_search {
   text-align: center;
   position: relative;
-  top: 30%;
+  /* top: 3%; */
   font-size: 60px;
   font-weight: bolder;
 }
