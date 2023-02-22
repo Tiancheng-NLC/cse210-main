@@ -35,6 +35,7 @@
           />
           <input type="checkbox" @click="toggle()" />
           <strong>Show Password</strong>
+          <div class="invalid" v-if="msg.password">{{msg.password}}</div>
         </div>
         <br /><br />
         <!-- confirm password -->
@@ -94,6 +95,10 @@ export default {
       this.email = value;
       this.validateEmail(value);
     },
+    password(value) {
+      this.pwd = value;
+      this.validatePwd(this.pwd);
+    }
   },
   methods: {
     sendOTP() {
@@ -108,11 +113,11 @@ export default {
       } else {
         this.pwd_match = true;
       }
-      if (this.msg.email !== "") {
+      if (this.msg.email !== "" || this.msg.password !== "") {
         // if invalid email then don't make API call
         console.log("cannot call api");
         return;
-      }
+      };
       var tempThis = this;
       axios
         .post("http://localhost:8080/api/emailOTP", "", {
@@ -144,6 +149,13 @@ export default {
         this.msg["email"] = "";
       } else {
         this.msg["email"] = "Please enter a valid email address";
+      }
+    },
+    validatePwd(value) {
+      if ((!/[`!@#$%^&*()_+\-=\\|,.<>?~]/.test(value)) || value.length < 8) {
+        this.msg["password"] = "Please enter a password that contains at least 8 letters and 1 special character";
+      } else {
+        this.msg["password"] = "";
       }
     },
     direct(target) {
