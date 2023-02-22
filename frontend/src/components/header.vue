@@ -14,6 +14,7 @@
           <img class="logo" src="../img/profile.png" alt="logo missing" />
         </div>
         <div id="profile_dropdown">
+          <br />
           <span @click="direct('profile')">Edit profile</span>
           <br /><br />
           <span @click="direct('reset')">Reset password</span>
