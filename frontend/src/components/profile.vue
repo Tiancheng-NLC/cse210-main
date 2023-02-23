@@ -31,8 +31,8 @@
       <div class="profile_input">
         <label>Gender:&nbsp;</label>
         <select name="gender" id="gender" v-model="gender">
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
+          <option value="F">Female</option>
+          <option value="M">Male</option>
           <option value="Other">Other</option>
         </select>
       </div>
@@ -60,8 +60,8 @@
       <div class="profile_input">
         <label>Occupation:&nbsp;</label>
         <select name="occupation" id="occupation" v-model="occupation">
-          <option value="Student">Student</option>
-          <option value="Professor">Professor</option>
+          <option value="S">Student</option>
+          <option value="P">Professor</option>
         </select>
       </div>
       <br />
@@ -88,8 +88,8 @@
       <div class="profile_input">
         <label>Smoking:&nbsp;</label>
         <select name="smoking" id="smoking" v-model="smoking">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
         </select>
       </div>
       <br />
@@ -97,8 +97,8 @@
       <div class="profile_input">
         <label>Pets:&nbsp;</label>
         <select name="pet" id="pet" v-model="pet">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
         </select>
       </div>
       <br />
@@ -106,8 +106,8 @@
       <div class="profile_input">
         <label>Food Preferences:&nbsp;</label>
         <select name="food" id="food" v-model="food">
-          <option value="Vegan">Vegan</option>
-          <option value="Non-vegan">Non-vegan</option>
+          <option value="V">Vegan</option>
+          <option value="NV">Non-vegan</option>
         </select>
       </div>
       <br />
@@ -115,13 +115,13 @@
       <div class="profile_input">
         <label>Wake up early?&nbsp;</label>
         <select name="sleep1" id="sleep1" v-model="sleep1">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
         </select>
         <label>&nbsp;Sleep early?&nbsp;</label>
         <select name="sleep2" id="sleep2" v-model="sleep2">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
         </select>
       </div>
       <br />
@@ -130,8 +130,8 @@
       <div class="profile_input">
         <label>Wish to keep your profile private?&nbsp;</label>
         <select name="private" id="private" v-model="private">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="Y">Yes</option>
+          <option value="N">No</option>
         </select>
       </div>
       <br />
