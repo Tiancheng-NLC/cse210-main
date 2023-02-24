@@ -127,7 +127,7 @@
       <br />
       <!-- intro -->
       <div class="profile_input">
-        <label>Introduction of yourself:</label>
+        <label>Your Introduction:</label>
         <br />
         <textarea rows="4" class="field" v-model="introduction" required />
       </div>

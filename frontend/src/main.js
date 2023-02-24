@@ -14,7 +14,7 @@ const store = new vuex.Store({
         isLoggedIn:null,
         otp:null,
         password: null,
-        profile:[],
+        // profile:[],
     },
     mutations:{
         setUser(state,user){
@@ -50,9 +50,9 @@ const store = new vuex.Store({
         getUser(state){
             return state.user;
         },
-        getProfile(state){
-            return state.profile;
-        },
+        // getProfile(state){
+        //     return state.profile;
+        // },
     }
 })
 
