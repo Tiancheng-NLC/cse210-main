@@ -144,7 +144,7 @@
           <div class="h-100" style="width: 30%; display: inline-block;">
             <img class="card-img-top-popup img-thumbnail" src="../img/mark-dp.jpg" alt="Card image cap" v-if="this.selectedUser.gender === 'M'">
             <img class="card-img-top-popup img-thumbnail" src="../img/sneha-dp.jpg" alt="Card image cap" v-else-if="this.selectedUser.gender === 'F'">
-            <button class="btn btn-primary" style="width: 100%; margin-top: 3px;">Send Invite </button>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 3px;" @click="sendEmailInvite">{{this.sendInviteButtonMsg}}</button>
           </div>
           <div class="h-100 d-inline-block" style="width: 3%; padding-left: 5px; display: inline-block; float: right;">
             <button
@@ -220,6 +220,7 @@ export default {
       users: [],
       image: "",
       selectedUser: "",
+      sendInviteButtonMsg: "Send Invite",
     };
   },
   computed: {
@@ -234,8 +235,10 @@ export default {
       this.showFilter = !this.showFilter;
     },
     showModal(user){
-      this.selectedUser = user;
-      console.log(this.selectedUser);
+      var temp = this;
+      temp.selectedUser = user;
+      temp.sendInviteButtonMsg = "Send Invite";
+      console.log(temp.selectedUser);
     },
     search() {
       const filter = this.filter;
@@ -255,8 +258,27 @@ export default {
           console.log("no search result");
         });
     },
+    sendEmailInvite() {
+      var temp = this;
+      axios
+        .post("http://localhost:8080/api/sendEmailInvite", "", {
+          headers: {
+            requesterEmail: temp.$store.getters.getUser,
+            receiverEmail: temp.selectedUser.email,
+          },
+        })
+        .then(function (response) {
+          if (response.status == 200) {
+            temp.sendInviteButtonMsg = "Invited"
+          }
+        })
+        .catch(function (err) {
+            console.log("server error");
+            console.log(err);
+        });
+    },
   },
-};
+}
 </script>
 
 <style scoped>
