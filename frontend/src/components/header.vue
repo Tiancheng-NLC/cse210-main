@@ -48,7 +48,7 @@ export default {
     loggedIn() {
       var log = this.$store.getters.isLoggedIn;
       return log;
-      // console.log(log);
+      // console.log(this.$store.getters.getUser);
       // console.log(localStorage.getItem("login"));
       // if (log == true) {
       //   console.log("first");
@@ -58,7 +58,7 @@ export default {
       //   if (localStorage.getItem("login") == "true") {
       //     this.$store.commit("setLoggedIn", "loggedin");
       //     console.log("second");
-      //     return log;
+      //     return !log;
       //   } else {
       //     console.log("third");
       //     return log;
@@ -71,6 +71,7 @@ export default {
     logout() {
       this.$store.commit("setUser", null);
       this.$store.commit("setLoggedIn", null);
+      // localStorage.setItem("login", "false");
       this.direct("");
     },
     direct(target) {
