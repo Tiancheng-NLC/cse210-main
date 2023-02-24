@@ -24,6 +24,7 @@
   padding-right: 50px;
   position: sticky;
   bottom: 0;
+  margin-top: 50px;
 }
 #left_footer {
   float: left;

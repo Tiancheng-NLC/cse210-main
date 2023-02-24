@@ -44,7 +44,7 @@
           <label for="Occupation">Occupation</label>
           <select class="requirement" id="occupation" v-model="filter.occupation">
             <option value="S">Student</option>
-            <option value="P">Professor</option>
+            <option value="P">Professional</option>
           </select>
         </div>
         <div style="display: inline-block;margin-right:20px;">
@@ -128,7 +128,7 @@
             <p class="card-text" v-if="user.gender === 'F'">{{user.age}} years (Female)</p>
             <p class="card-text" v-else-if="user.gender === 'M'">{{user.age}} years (Male)</p>
           <p class="card-text">Budget: ${{user.minBudget}} to ${{user.maxBudget}}</p>
-            <a href="#" class="stretched-link" @click="showModal(user)"></a>
+            <a href="#" class="stretched-link" @click="showModal(user)" data-bs-toggle="modal" data-bs-target="#myModal"></a>
           </div>
         </div>
       </span>
@@ -142,8 +142,8 @@
       <div class="modal-content">
         <div style="height: 255px; background-color: rgba(0, 128, 0,0.2); padding: 8px; text-align: right;">
           <div class="h-100" style="width: 30%; display: inline-block;">
-            <img class="card-img-top" src="../img/mark-dp.jpg" alt="Card image cap" v-if="this.selectedUser.gender === 'M'">
-            <img class="card-img-top" src="../img/sneha-dp.jpg" alt="Card image cap" v-else-if="this.selectedUser.gender === 'F'">
+            <img class="card-img-top-popup img-thumbnail" src="../img/mark-dp.jpg" alt="Card image cap" v-if="this.selectedUser.gender === 'M'">
+            <img class="card-img-top-popup img-thumbnail" src="../img/sneha-dp.jpg" alt="Card image cap" v-else-if="this.selectedUser.gender === 'F'">
             <button class="btn btn-primary" style="width: 100%; margin-top: 3px;">Send Invite </button>
           </div>
           <div class="h-100 d-inline-block" style="width: 3%; padding-left: 5px; display: inline-block; float: right;">
@@ -263,6 +263,8 @@ export default {
 .cards-container{
   text-align: justify;
   margin-left: 35px;
+  position: absolute;
+  z-index: 0;
 }
 .modal-body-title{
   text-align: left;
@@ -277,6 +279,11 @@ export default {
 .card-img-top {
     width: 100%;
     height: 10rem;
+    object-fit: cover;
+}
+.card-img-top-popup {
+    width: 100%;
+    height: 12rem;
     object-fit: cover;
 }
 h5{
@@ -382,7 +389,7 @@ select, label{
   width: 280px;
   height: 250px;
   position: absolute;
-  z-index: 10;
+  z-index: 100;
   border-radius: 4px;
 }
 

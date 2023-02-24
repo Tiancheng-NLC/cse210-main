@@ -16,7 +16,7 @@
     <div class="modal-content">
       <div style="height: 255px; background-color: rgba(0, 128, 0,0.2); padding: 8px; text-align: right;">
         <div class="h-100" style="width: 30%; display: inline-block;">
-          <img class="card-img-top img-thumbnail" src="../img/mark-dp.jpg" alt="Card image cap">
+          <img class="card-img-top-popup img-thumbnail" src="../img/mark-dp.jpg" alt="Card image cap">
           <button class="btn btn-primary" style="width: 100%; margin-top: 3px;">Send Invite </button>
         </div>
         <div class="h-100 d-inline-block" style="width: 3%; padding-left: 5px; display: inline-block; float: right;">
@@ -74,6 +74,11 @@
   width: 100%;
 }
 .card-img-top {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+}
+.card-img-top-popup {
     width: 100%;
     height: 12rem;
     object-fit: cover;
