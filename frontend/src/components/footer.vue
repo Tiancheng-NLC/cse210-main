@@ -4,7 +4,7 @@
     <div id="right_footer">
       <span>Privacy & Policy</span>
       &nbsp; &nbsp;&nbsp; &nbsp;
-      <span>Terms & Conditions</span>
+      <!-- <span>Terms & Conditions</span> -->
     </div>
     <!-- left section -->
     <div id="left_footer">
