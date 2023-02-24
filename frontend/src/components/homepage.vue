@@ -1,8 +1,8 @@
 <template>
   <div id="home">
       <!-- v-show="loggedIn" -->
-      <p id="home_search">Let's find your potential roommates</p>
-      <div class="search-container">
+      <p id="home_search" v-show="loggedIn">Let's find your potential roommates</p>
+      <div class="search-container" v-show="loggedIn">
       <div id="my-search">
         <div style="display: inline-block;margin-right:20px;">
           <label for="gender">Gender</label>
