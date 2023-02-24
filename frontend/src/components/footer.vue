@@ -17,11 +17,13 @@
 
 <style scoped>
 #footer {
-  background-color: #b2b2b2;
+  background-color: rgba(211, 211, 211,0.5);
   width: 100%;
-  height: 3vh;
+  height: 22px;
   padding-left: 50px;
   padding-right: 50px;
+  position: sticky;
+  bottom: 0;
 }
 #left_footer {
   float: left;
