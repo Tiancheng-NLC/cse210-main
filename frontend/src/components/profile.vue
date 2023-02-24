@@ -125,6 +125,12 @@
         </select>
       </div>
       <br />
+      <!-- intro -->
+      <div class="profile_input">
+        <label>Introduction of yourself:</label>
+        <br />
+        <textarea rows="4" class="field" v-model="introduction" required />
+      </div>
       <br />
       <!-- private -->
       <div class="profile_input">
@@ -161,6 +167,7 @@ export default {
       sleep1: "",
       sleep2: "",
       private: "",
+      introduction: "",
     };
   },
   // if user already have profile, show it
@@ -190,6 +197,7 @@ export default {
             temp.sleep1 = data.riser;
             temp.sleep2 = data.sleep;
             temp.private = data.isPrivate;
+            temp.introduction = data.description;
           }
         })
         .catch(function (err) {
@@ -214,6 +222,7 @@ export default {
         riser: this.sleep1,
         sleep: this.sleep2,
         isPrivate: this.private,
+        description: this.introduction,
       };
 
       // identify empty input
