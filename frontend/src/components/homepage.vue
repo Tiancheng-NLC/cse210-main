@@ -345,9 +345,10 @@ table, th, td {
   font-size: medium;
 }
 #home {
-  min-height: 100vh; 
-  margin: 0; 
+  min-height: 110vh; 
+  /* margin: 0;  */
   background-color: rgba(211, 211, 211,0.15);
+  margin-bottom: 50px;
 }
 #home_search {
   text-align: left;
