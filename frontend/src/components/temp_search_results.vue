@@ -1,5 +1,5 @@
 <template>
-  <div id="tempsearchresults" class="float-child">
+  <div id="tempsearchresults">
     <div class="card" style="width: 14rem; height: 16rem;">
       <img class="card-img-top" src="../img/mark-dp.jpg" alt="Card image cap">
       <div class="card-body">
@@ -17,7 +17,6 @@
       <div style="height: 255px; background-color: rgba(0, 128, 0,0.2); padding: 8px; text-align: right;">
         <div class="h-100" style="width: 30%; display: inline-block;">
           <img class="card-img-top img-thumbnail" src="../img/mark-dp.jpg" alt="Card image cap">
-          <a href="#" class="stretched-link" data-bs-toggle="modal" data-bs-target="#myModal"></a>
           <button class="btn btn-primary" style="width: 100%; margin-top: 3px;">Send Invite </button>
         </div>
         <div class="h-100 d-inline-block" style="width: 3%; padding-left: 5px; display: inline-block; float: right;">

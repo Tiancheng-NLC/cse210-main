@@ -2,6 +2,7 @@
   <div id="home">
       <!-- v-show="loggedIn" -->
       <p id="home_search">Let's find your potential roommates</p>
+      <div class="search-container">
       <div id="my-search">
         <div style="display: inline-block;margin-right:20px;">
           <label for="gender">Gender</label>
@@ -13,11 +14,11 @@
         <!-- age -->
         <div style="display: inline-block;margin-right:20px;">
           <label for="age">Age Group</label>
-          <select class="requirement" id="age" v-model.number="filter.ageCategory">
-            <option value=1>Below 25</option>
-            <option value=2>25 to 35</option>
-            <option value=3>36 to 45</option>
-            <option value=4>Above 45</option>
+          <select class="requirement" id="age" v-model="filter.ageCategory">
+            <option value="1">Below 25</option>
+            <option value="2">25 to 35</option>
+            <option value="3">36 to 45</option>
+            <option value="4">Above 45</option>
           </select>
         </div>
           <!-- ethnicity -->
@@ -57,23 +58,26 @@
           <br>
           <button class="requirement button-search" id="toggle" @click="toggleFilter"> More Filters</button>
           <div class="popup" id="pop" style="display: none" v-show="showFilter">
-            <div style="display: inline-block;margin-right:20px; margin-top: 15px; margin-left: 15px;">
-              <label for="budget">Montly Budget</label>
-              <input
-              class="requirement-popup"
-              type="number"
-              placeholder="Min."
-              v-model.number="filter.minBudget"
-              id="budget"
-              style="margin-right: 20px;"
-            />
-            <input
-              class="requirement-popup"
-              type="number"
-              placeholder="Max."
-              v-model.number="filter.maxBudget"
-              id="budget"
-            />
+            <!-- <div style="display: inline-block;margin-right:20px; margin-top: 15px; margin-left: 15px;"> -->
+              <div style="display: inline-block;margin-right:20px; margin-left: 15px; margin-top: 15px;">
+                <label for="min-budget">Min. Budget</label>
+                <input
+                class="requirement-popup"
+                type="number"
+                placeholder="Min."
+                v-model="filter.minBudget"
+                id="min-budget"
+              />
+              </div>
+            <div style="display: inline-block;margin-right:20px;margin-top: 15px;">
+              <label for="max-budget">Max. Budget</label>
+                <input
+                  class="requirement-popup"
+                  type="number"
+                  placeholder="Max."
+                  v-model="filter.maxBudget"
+                  id="budget"
+                />
             </div>
             <div style="display: inline-block;margin-right:20px; margin-left: 15px;">
               <label for="smoking">Smoking</label>
@@ -92,15 +96,15 @@
             <div style="display: inline-block;margin-right:20px; margin-left: 15px;">
               <label for="riser">Wake Up Early</label>
               <select class="requirement" id="riser" v-model="filter.riser">
-              <option value="ER">Yes</option>
-              <option value="LR">No</option>
+              <option value="Y">Yes</option>
+              <option value="N">No</option>
               </select>
             </div>
             <div style="display: inline-block;margin-right:20px;">
               <label for="riser">Sleep Early</label>
               <select class="requirement" id="sleep" v-model="filter.sleep">
-                <option value="ES">Yes</option>
-                <option value="LS">No</option>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
               </select>
             </div>
             <div style="margin-top: 20px;">
@@ -112,24 +116,88 @@
           <br>
           <button class="requirement button-search" style="background-color: #0a2351;" @click="search"> Search</button>
         </div>
+      </div>
       </div> 
-      <!-- <span id="cards" v-for="user in users" :key="user.id">
-        <div class="card w-25 d-inline-block">
+      <div class="cards-container">
+      <span id="cards" v-for="user in users" :key="user.email">
+        <div class="card" style="width: 13rem; height: 16rem; display: inline-block; margin-right: 10px; margin-top: 13px;">
+          <img class="card-img-top" src="../img/mark-dp.jpg" alt="Card image cap" v-if="user.gender === 'M'">
+          <img class="card-img-top" src="../img/sneha-dp.jpg" alt="Card image cap" v-else-if="user.gender === 'F'">
           <div class="card-body">
-            <h5 class="card-title">{{ user.name }}</h5>
-            <h5 class="card-text">
-              {{ user.age }} years ({{ user.gender }})
-              <br />
-              rent:{{ user.rent_min }} to {{ user.rent_max }}
-            </h5>
-            <button class="btn btn-primary">View details</button>
+            <h5 class="card-title">{{user.name}}</h5>
+            <p class="card-text" v-if="user.gender === 'F'">{{user.age}} years (Female)</p>
+            <p class="card-text" v-else-if="user.gender === 'M'">{{user.age}} years (Male)</p>
+          <p class="card-text">Budget: ${{user.minBudget}} to ${{user.maxBudget}}</p>
+            <a href="#" class="stretched-link" @click="showModal(user)"></a>
           </div>
         </div>
-      </span> -->
+      </span>
+      </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div style="height: 255px; background-color: rgba(0, 128, 0,0.2); padding: 8px; text-align: right;">
+          <div class="h-100" style="width: 30%; display: inline-block;">
+            <img class="card-img-top" src="../img/mark-dp.jpg" alt="Card image cap" v-if="this.selectedUser.gender === 'M'">
+            <img class="card-img-top" src="../img/sneha-dp.jpg" alt="Card image cap" v-else-if="this.selectedUser.gender === 'F'">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 3px;">Send Invite </button>
+          </div>
+          <div class="h-100 d-inline-block" style="width: 3%; padding-left: 5px; display: inline-block; float: right;">
+            <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+          </div>
+          <div class="h-100  float-right" style="width: 67%; padding-left: 10px; display: inline-block; float: right;">
+              <h4 class="card-title" style="margin-top: 25px;">{{this.selectedUser.name}}</h4>
+              <p class="profile-card-text" v-if="this.selectedUser.gender === 'F'">{{this.selectedUser.age}} years (Female)</p>
+              <p class="profile-card-text" v-if="this.selectedUser.gender === 'M'">{{this.selectedUser.age}} years (Male)</p>
+              <p class="profile-card-text">Budget: ${{this.selectedUser.minBudget}} to ${{this.selectedUser.maxBudget}} per month</p>          
+              <table class="table table-bordered" style="margin-top: 15px; text-align: center;">
+              <thead>
+                <tr class="table-dark">
+                  <th scope="col">Occupation</th>
+                  <th scope="col">Smoking</th>
+                  <th scope="col">Pets</th>
+                  <th scope="col">Vegan</th>
+                  <th scope="col">Sleep Early</th>
+                  <th scope="col">Wake Up Early</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-secondary">
+                  <td v-if="this.selectedUser.occupation === 'S'">Student</td>
+                  <td v-else-if="this.selectedUser.occupation === 'P'">Professional</td>
+                  <td v-if="this.selectedUser.smoking === 'Y'">Yes</td>
+                  <td v-else-if="this.selectedUser.smoking === 'N'">No</td>
+                  <td v-if="this.selectedUser.pets === 'Y'">Yes</td>
+                  <td v-else-if="this.selectedUser.pets === 'N'">No</td>
+                  <td v-if="this.selectedUser.food === 'V'">Yes</td>
+                  <td v-else-if="this.selectedUser.food === 'NV'">No</td>
+                  <td v-if="this.selectedUser.sleep === 'Y'">Yes</td>
+                  <td v-else-if="this.selectedUser.sleep === 'N'">No</td>
+                  <td v-if="this.selectedUser.riser === 'Y'">Yes</td>
+                  <td v-else-if="this.selectedUser.riser === 'N'">No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div> 
+        </div>
+        <div class="modal-body">
+          <p style="text-align: left;">{{this.selectedUser.description}}</p>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
+import $ from "jquery"
 import axios from "axios";
 export default {
   data() {
@@ -146,9 +214,12 @@ export default {
         food: "",
         riser: "",
         sleep: "",
+        description: "",
       },
       showFilter: false,
       users: [],
+      image: "",
+      selectedUser: "",
     };
   },
   computed: {
@@ -162,21 +233,25 @@ export default {
       console.log(this.showFilter);
       this.showFilter = !this.showFilter;
     },
+    showModal(user){
+      this.selectedUser = user;
+      console.log(this.selectedUser);
+    },
     search() {
       const filter = this.filter;
-      console.log(filter.sleep);
-      console.log(typeof(filter));
       axios
         .post(
           "http://localhost:8080/api/getRoomieProfilesBasedOnFilters", filter 
         )
-        .then(function (response) {
+        .then( (response) => {
           if (response.status == 200) {
-            console.log(response.data)
+            this.users = response.data;
             console.log("search result");
+            console.log(this.users);
           }
         })
         .catch(function (err) {
+          console.log(err)
           console.log("no search result");
         });
     },
@@ -185,6 +260,65 @@ export default {
 </script>
 
 <style scoped>
+.cards-container{
+  text-align: justify;
+  margin-left: 35px;
+}
+.modal-body-title{
+  text-align: left;
+  color: #006400;
+  font-weight: 900;
+}
+
+.img-thumbnail{
+  height: 100%;
+  width: 100%;
+}
+.card-img-top {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+}
+h5{
+  margin: 0;
+}
+p {
+margin: 0;
+}
+.card-body{
+  padding: 10px;
+}
+.card-title{
+  text-align: left;
+  color: black;
+  font-weight: 900;
+}
+.card-text{
+  text-align: left;
+  color: black;
+}
+.profile-card-text{
+  text-align: left;
+  color: black;
+  font-size: large;
+}
+#tempsearchresults {
+  position: relative;
+}
+#temp_search {
+  text-align: center;
+  position: relative;
+  top: 30%;
+  font-size: 60px;
+  font-weight: bolder;
+}
+#search {
+  background-color: #fff;
+}
+table, th, td {
+  border: 0.75px solid;
+  border-bottom: 1px solid;
+}
 #my-search {
   background-color: rgba(128, 225, 128, 0.2);
   margin-left: 80px;
@@ -192,14 +326,20 @@ export default {
   padding-bottom: 15px;
   padding-top: 5px;
 }
+.search-container{
+  z-index: 1;         /* Ensure it stays on top of other player divs */
+  top: 0px;
+  position: sticky;
+  background-color: #f9f9f9fa;
+}
 .label-food-pref{
   width: 130px;
   height: 32px;
   font-size: medium;
 }
 #home {
-  position: relative;
-  height: 85vh;
+  min-height: 100vh; 
+  margin: 0; 
   background-color: rgba(211, 211, 211,0.15);
 }
 #home_search {
@@ -210,9 +350,11 @@ export default {
   margin-bottom: 0;
   margin-top: 10px;
 }
-#cards {
+/* #cards {
   width: 100%;
-}
+  margin-left: 80px;
+  margin-right: 80px;
+} */
 .requirement {
   width: 110px;
   height: 32px;
@@ -236,7 +378,7 @@ select, label{
   border-radius: 4px;
 }
 .popup {
-  background-color: rgba(128, 225, 128, 0.2);
+  background-color: rgba(128, 225, 128, 0.9);
   width: 280px;
   height: 250px;
   position: absolute;
