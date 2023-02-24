@@ -26,6 +26,7 @@
           />
           <input type="checkbox" @click="toggle()" />
           <strong>Show Password</strong>
+          <div class="invalid" v-if="msg.password">{{msg.password}}</div>
         </div>
         <br /><br />
         <!-- confirm new password -->
@@ -66,6 +67,12 @@ export default {
       msg: [],
       serverError: false,
     };
+  },  
+    watch: {
+    password(value) {
+      this.pwd = value;
+      this.validatePwd(this.pwd);
+    }
   },
   methods: {
     reset() {
@@ -100,6 +107,12 @@ export default {
             tempThis.serverError = true;
           }
         });
+    }, validatePwd(value) {
+      if ((!/[`!@#$%^&*()_+\-=\\|,.<>?~]/.test(value)) || value.length < 8) {
+        this.msg["password"] = "Please enter a password that contains at least 8 letters and 1 special character";
+      } else {
+        this.msg["password"] = "";
+      }
     },
     direct(target) {
       this.$router.push("/" + target);
