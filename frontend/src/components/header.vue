@@ -26,8 +26,6 @@
     <!-- left section -->
     <div id="left_header">
       <button>Search</button>
-      &nbsp;
-      <button>Roommate Finder</button>
     </div>
     <!-- center section -->
     <div id="center_header" @click="direct('')">
@@ -99,7 +97,7 @@ body {
   text-align: center;
   padding-left: 50px;
   padding-right: 50px;
-  height: 12vh;
+  height: 13vh;
 }
 #left_header {
   float: left;
@@ -108,7 +106,6 @@ body {
 #center_header {
   width: 15%;
   margin: 0px auto;
-  padding-top: auto;
 }
 #right_header {
   float: right;
@@ -125,7 +122,7 @@ body {
   z-index: 100;
 }
 .logo {
-  width: 66px;
+  width: 56px;
   height: auto;
 }
 .roomie-logo {

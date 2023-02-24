@@ -7,6 +7,7 @@ import Reset from "../components/reset_password.vue";
 import Profile from "../components/profile.vue";
 import OTPSignup from "../components/otp_signup.vue";
 import OTPForgotPassword from "../components/otp_forgot_password.vue";
+import TempSearchResults from "../components/temp_search_results.vue";
 
 const routes=[
     {
@@ -48,6 +49,11 @@ const routes=[
         path: "/profile",
         name: "profile",
         component:Profile,
+    },
+    {
+        path: "/temp",
+        name: "temp",
+        component:TempSearchResults,
     },
 ];
 const router=createRouter({
