@@ -21,7 +21,7 @@
         this.$route.path !== '/forgot' &&
         this.$route.path !== '/reset' &&
         this.$route.path !== '/profile'
-      "
+"
     />
   </div>
 </template>
