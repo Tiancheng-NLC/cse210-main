@@ -125,6 +125,14 @@
         </select>
       </div>
       <br />
+      <!-- profile photo -->
+      <div class="profile_input">
+        <label>Upload Your Profile Photo Here:</label>
+        <input type="file" accept="image/*" @change=attachPath>
+        <label  v-if="photo.url"> Photo Preview: </label>
+        <img class="image-preview" v-if="photo.url" :src="photo.url" />
+      </div>
+      <br />
       <!-- intro -->
       <div class="profile_input">
         <label>Your Introduction:</label>
@@ -168,6 +176,10 @@ export default {
       sleep2: "",
       private: "",
       introduction: "",
+      photo: {
+        image: null,
+        url: null,
+      }
     };
   },
   // if user already have profile, show it
@@ -198,6 +210,7 @@ export default {
             temp.sleep2 = data.sleep;
             temp.private = data.isPrivate;
             temp.introduction = data.description;
+            temp.photo = data.photo;
           }
         })
         .catch(function (err) {
@@ -223,6 +236,7 @@ export default {
         sleep: this.sleep2,
         isPrivate: this.private,
         description: this.introduction,
+        photo: this.photo,
       };
 
       // identify empty input
@@ -245,6 +259,17 @@ export default {
           console.log("Error on Server.");
         });
     },
+
+    attachPath(elem) {
+      // TODO: [Yifei 2/25] validate path and photo format 
+
+      // record path in photo field
+      const file = elem.target.files[0];
+      this.photo.image = file;
+      this.photo.url = URL.createObjectURL(file)
+      console.log("photo recorded");
+    },
+
     direct(target) {
       this.$router.push("/" + target);
     },
@@ -261,6 +286,10 @@ export default {
 }
 .profile_input {
   text-align: left;
+}
+
+.profile_input .image-preview {
+  width:80%;
 }
 .field {
   width: 80%;
