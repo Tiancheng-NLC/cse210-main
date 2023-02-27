@@ -131,7 +131,7 @@
             <h5 class="card-title">{{user.name}}</h5>
             <p class="card-text" v-if="user.gender === 'F'">{{user.age}} years (Female)</p>
             <p class="card-text" v-else-if="user.gender === 'M'">{{user.age}} years (Male)</p>
-          <p class="card-text">Budget: ${{user.minBudget}} to ${{user.maxBudget}}</p>
+          <p class="card-text">Approx Budget: ${{user.approxBudget}}</p>
             <a href="#" class="stretched-link" @click="showModal(user)" data-bs-toggle="modal" data-bs-target="#myModal"></a>
           </div>
         </div>
@@ -161,7 +161,7 @@
               <h4 class="card-title" style="margin-top: 25px;">{{this.selectedUser.name}}</h4>
               <p class="profile-card-text" v-if="this.selectedUser.gender === 'F'">{{this.selectedUser.age}} years (Female)</p>
               <p class="profile-card-text" v-if="this.selectedUser.gender === 'M'">{{this.selectedUser.age}} years (Male)</p>
-              <p class="profile-card-text">Budget: ${{this.selectedUser.minBudget}} to ${{this.selectedUser.maxBudget}} per month</p>          
+              <p class="profile-card-text">Approx Budget: ${{this.selectedUser.approxBudget}} per month</p>          
               <table class="table table-bordered" style="margin-top: 15px; text-align: center;">
               <thead>
                 <tr class="table-dark">

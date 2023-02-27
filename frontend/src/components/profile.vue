@@ -67,19 +67,12 @@
       <br />
       <!-- rent range -->
       <div class="profile_input">
-        <label>Rent Range(per month):</label>
+        <label>Approximate Rent(per month):</label>
         <br />
         <input
           class="field short"
           type="number"
-          v-model="min_budget"
-          required
-        />
-        -
-        <input
-          class="field short"
-          type="number"
-          v-model="max_budget"
+          v-model="approxBudget"
           required
         />
       </div>
@@ -159,8 +152,7 @@ export default {
       gender: "",
       ethnicity: "",
       occupation: "",
-      min_budget: "",
-      max_budget: "",
+      approxBudget: "",
       smoking: "",
       pet: "",
       food: "",
@@ -189,8 +181,7 @@ export default {
             temp.gender = data.gender;
             temp.ethnicity = data.nationality;
             temp.occupation = data.occupation;
-            temp.min_budget = data.minBudget;
-            temp.max_budget = data.maxBudget;
+            temp.approxBudget = data.approxBudget;
             temp.smoking = data.smoking;
             temp.pet = data.pets;
             temp.food = data.food;
@@ -214,8 +205,7 @@ export default {
         gender: this.gender,
         nationality: this.ethnicity,
         occupation: this.occupation,
-        minBudget: this.min_budget,
-        maxBudget: this.max_budget,
+        approxBudget: this.approxBudget,
         smoking: this.smoking,
         pets: this.pet,
         food: this.food,
