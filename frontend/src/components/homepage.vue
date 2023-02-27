@@ -118,7 +118,7 @@
         </div>
         <div style="display: inline-block;margin-right:20px;">
           <br>
-          <button class="requirement button-search" style="background-color: #0a2351;" @click="createAlert"> Notify Me</button>
+          <button class="requirement button-search" style="background-color: #DAA520;" @click="createAlert"> Notify Me</button>
         </div>
       </div>
       </div> 
@@ -372,7 +372,7 @@ table, th, td {
 #my-search {
   background-color: rgba(128, 225, 128, 0.2);
   margin-left: 80px;
-  margin-right: 152px;
+  margin-right: 20px;
   padding-bottom: 15px;
   padding-top: 5px;
 }
