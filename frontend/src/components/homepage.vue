@@ -116,6 +116,10 @@
           <br>
           <button class="requirement button-search" style="background-color: #0a2351;" @click="search"> Search</button>
         </div>
+        <div style="display: inline-block;margin-right:20px;">
+          <br>
+          <button class="requirement button-search" style="background-color: #0a2351;" @click="createAlert"> Notify Me</button>
+        </div>
       </div>
       </div> 
       <div class="cards-container">
@@ -203,6 +207,7 @@ export default {
   data() {
     return {
       filter: {
+        email: this.$store.getters.getUser,
         gender: "",
         ageCategory: 0,
         nationality: "",
@@ -256,6 +261,24 @@ export default {
         .catch(function (err) {
           console.log(err)
           console.log("no search result");
+        });
+    },
+    createAlert() {
+      const filter = this.filter;
+      axios
+        .post(
+          "http://localhost:8080/api/createAlertOnFilter", filter 
+        )
+        .then( (response) => {
+          if (response.status == 200) {
+            this.users = response.data;
+            console.log("alert created on filter");
+            console.log(this.users);
+          }
+        })
+        .catch(function (err) {
+          console.log(err)
+          console.log("no alert created");
         });
     },
     sendEmailInvite() {
