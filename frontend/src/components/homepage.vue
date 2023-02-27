@@ -208,18 +208,18 @@ export default {
     return {
       filter: {
         email: this.$store.getters.getUser,
-        gender: "",
-        ageCategory: 0,
-        nationality: "",
-        occupation: "",
-        minBudget: 0,
-        maxBudget: 0,
-        smoking: "",
-        pets: "",
-        food: "",
-        riser: "",
-        sleep: "",
-        description: "",
+        gender: null,
+        ageCategory: null,
+        nationality: null,
+        occupation: null,
+        minBudget: null,
+        maxBudget: null,
+        smoking: null,
+        pets: null,
+        food: null,
+        riser: null,
+        sleep: null,
+        description: null,
       },
       showFilter: false,
       users: [],
@@ -271,9 +271,7 @@ export default {
         )
         .then( (response) => {
           if (response.status == 200) {
-            this.users = response.data;
             console.log("alert created on filter");
-            console.log(this.users);
           }
         })
         .catch(function (err) {
