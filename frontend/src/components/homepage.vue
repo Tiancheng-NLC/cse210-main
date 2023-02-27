@@ -116,6 +116,10 @@
           <br>
           <button class="requirement button-search" style="background-color: #0a2351;" @click="search"> Search</button>
         </div>
+        <div style="display: inline-block;margin-right:20px;">
+          <br>
+          <button class="requirement button-search" style="background-color: #0a2351;" @click="createAlert"> Notify Me</button>
+        </div>
       </div>
       </div> 
       <div class="cards-container">
@@ -203,18 +207,19 @@ export default {
   data() {
     return {
       filter: {
-        gender: "",
-        ageCategory: 0,
-        nationality: "",
-        occupation: "",
-        minBudget: 0,
-        maxBudget: 0,
-        smoking: "",
-        pets: "",
-        food: "",
-        riser: "",
-        sleep: "",
-        description: "",
+        email: this.$store.getters.getUser,
+        gender: null,
+        ageCategory: null,
+        nationality: null,
+        occupation: null,
+        minBudget: null,
+        maxBudget: null,
+        smoking: null,
+        pets: null,
+        food: null,
+        riser: null,
+        sleep: null,
+        description: null,
       },
       showFilter: false,
       users: [],
@@ -256,6 +261,22 @@ export default {
         .catch(function (err) {
           console.log(err)
           console.log("no search result");
+        });
+    },
+    createAlert() {
+      const filter = this.filter;
+      axios
+        .post(
+          "http://localhost:8080/api/createAlertOnFilter", filter 
+        )
+        .then( (response) => {
+          if (response.status == 200) {
+            console.log("alert created on filter");
+          }
+        })
+        .catch(function (err) {
+          console.log(err)
+          console.log("no alert created");
         });
     },
     sendEmailInvite() {
