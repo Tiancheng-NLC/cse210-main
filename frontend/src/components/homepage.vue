@@ -187,7 +187,7 @@
       </div>
     </div>
     <!-- cards space -->
-    <div class="cards-container">
+    <div class="cards-container" v-show="loggedIn">
       <!-- each card -->
       <span id="cards" v-for="user in users" :key="user.email">
         <div
@@ -457,8 +457,9 @@ export default {
         .then((response) => {
           if (response.status == 200) {
             this.users = response.data;
-            console.log("search result");
-            console.log(this.users);
+            if (this.users.length == 0) {
+              alert("no result");
+            }
           }
         })
         .catch(function (err) {
