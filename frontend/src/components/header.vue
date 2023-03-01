@@ -37,31 +37,35 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     loggedIn: this.$store.getters.isLoggedIn,
-  //   };
-  // },
   computed: {
     loggedIn() {
-      var log = this.$store.getters.isLoggedIn;
-      return log;
-      // console.log(this.$store.getters.getUser);
-      // console.log(localStorage.getItem("login"));
-      // if (log == true) {
-      //   console.log("first");
-      //   localStorage.setItem("login", "true");
-      //   return log;
-      // } else {
-      //   if (localStorage.getItem("login") == "true") {
-      //     this.$store.commit("setLoggedIn", "loggedin");
-      //     console.log("second");
-      //     return !log;
-      //   } else {
-      //     console.log("third");
-      //     return log;
-      //   }
-      // }
+      var temp = this;
+      // check if now logged in
+      var log = temp.$store.getters.isLoggedIn;
+      // once user logged in, we update local storage, whenever they refresh, they should be logged in(unless they click logout)
+      if (log == true) {
+        // loclastorage will help keep logged in
+        localStorage.setItem("user", temp.$store.getters.getUser);
+        localStorage.setItem("otp", temp.$store.getters.getOTP);
+        localStorage.setItem("pwd", temp.$store.getters.getPassword);
+        localStorage.setItem("login", "true");
+        return true;
+      } else {
+        // if now refresh, vuex will refresh, but local storage was set to "true" and will set vuex variables accordingly
+        if (localStorage.getItem("login") == "true") {
+          var user = localStorage.getItem("user");
+          var otp = localStorage.getItem("otp");
+          var pwd = localStorage.getItem("pwd");
+          this.$store.commit("setLoggedIn", "loggedin");
+          this.$store.commit("setUser", user);
+          this.$store.commit("setPassword", pwd);
+          this.$store.commit("setOTP", otp);
+          return true;
+        } else {
+          // if never logged in, vuex and localstorage will never make user logged in
+          return false;
+        }
+      }
     },
   },
 
@@ -69,7 +73,10 @@ export default {
     logout() {
       this.$store.commit("setUser", null);
       this.$store.commit("setLoggedIn", null);
-      // localStorage.setItem("login", "false");
+      localStorage.setItem("login", null);
+      localStorage.setItem("user", null);
+      localStorage.setItem("otp", null);
+      localStorage.setItem("pwd", null);
       this.direct("");
     },
     direct(target) {

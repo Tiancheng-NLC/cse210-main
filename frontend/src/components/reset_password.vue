@@ -26,7 +26,7 @@
           />
           <input type="checkbox" @click="toggle()" />
           <strong>Show Password</strong>
-          <div class="invalid" v-if="msg.password">{{msg.password}}</div>
+          <div class="invalid" v-if="msg.password">{{ msg.password }}</div>
         </div>
         <br /><br />
         <!-- confirm new password -->
@@ -67,12 +67,12 @@ export default {
       msg: [],
       serverError: false,
     };
-  },  
-    watch: {
+  },
+  watch: {
     password(value) {
       this.pwd = value;
       this.validatePwd(this.pwd);
-    }
+    },
   },
   methods: {
     reset() {
@@ -93,7 +93,7 @@ export default {
         .post("http://localhost:8080/api/updateUser", data)
         .then(function (response) {
           if (response.status == 200) {
-            // tempThis.$store.commit("setUser", );
+            tempThis.$store.commit("setLoggedIn", "loggedIn");
             tempThis.$router.push("/");
           }
         })
@@ -107,9 +107,11 @@ export default {
             tempThis.serverError = true;
           }
         });
-    }, validatePwd(value) {
-      if ((!/[`!@#$%^&*()_+\-=\\|,.<>?~]/.test(value)) || value.length < 8) {
-        this.msg["password"] = "Please enter a password that contains at least 8 letters and 1 special character";
+    },
+    validatePwd(value) {
+      if (!/[`!@#$%^&*()_+\-=\\|,.<>?~]/.test(value) || value.length < 8) {
+        this.msg["password"] =
+          "Please enter a password that contains at least 8 letters and 1 special character";
       } else {
         this.msg["password"] = "";
       }

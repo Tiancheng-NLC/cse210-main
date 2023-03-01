@@ -121,8 +121,8 @@
       <!-- profile photo -->
       <div class="profile_input">
         <label>Upload Your Profile Photo Here:</label>
-        <input type="file" accept="image/*" @change=attachPath>
-        <label  v-if="photo.url"> Photo Preview: </label>
+        <input type="file" accept="image/*" @change="attachPath" />
+        <label v-if="photo.url"> Photo Preview: </label>
         <img class="image-preview" v-if="photo.url" :src="photo.url" />
       </div>
       <br />
@@ -171,7 +171,7 @@ export default {
       photo: {
         image: null,
         url: null,
-      }
+      },
     };
   },
   // if user already have profile, show it
@@ -251,12 +251,12 @@ export default {
     },
 
     attachPath(elem) {
-      // TODO: [Yifei 2/25] validate path and photo format 
+      // TODO: [Yifei 2/25] validate path and photo format
 
       // record path in photo field
       const file = elem.target.files[0];
       this.photo.image = file;
-      this.photo.url = URL.createObjectURL(file)
+      this.photo.url = URL.createObjectURL(file);
       console.log("photo recorded");
     },
 
@@ -279,7 +279,7 @@ export default {
 }
 
 .profile_input .image-preview {
-  width:80%;
+  width: 80%;
 }
 .field {
   width: 80%;
