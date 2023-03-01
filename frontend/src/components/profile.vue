@@ -121,9 +121,9 @@
       <!-- profile photo -->
       <div class="profile_input">
         <label>Upload Your Profile Photo Here:</label>
-        <input type="file" accept="image/*" @change="attachPath" />
-        <label v-if="photo.url"> Photo Preview: </label>
-        <img class="image-preview" v-if="photo.url" :src="photo.url" />
+        <input type="file" accept="image/*" @change="attachPath"/>
+        <label  v-if="photoURL"> Photo Preview: </label>
+        <img class="image-preview" v-if="photoURL" :src="photoURL"/>
       </div>
       <br />
       <!-- intro -->
@@ -168,10 +168,8 @@ export default {
       sleep2: "",
       private: "",
       introduction: "",
-      photo: {
-        image: null,
-        url: null,
-      },
+      photoURL: "",
+      photoData: "",
     };
   },
   // if user already have profile, show it
@@ -201,7 +199,8 @@ export default {
             temp.sleep2 = data.sleep;
             temp.private = data.isPrivate;
             temp.introduction = data.description;
-            temp.photo = data.photo;
+            temp.photoURL = data.photoURL;
+            temp.photoData = data.photoData;
           }
         })
         .catch(function (err) {
@@ -209,7 +208,26 @@ export default {
         });
     }
   },
-  methods: {
+  methods: {  
+    getBase64 (file, callback) {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => callback(reader.result));
+      reader.readAsDataURL(file);
+    }, 
+    attachPath(e) {
+      // TODO: [Yifei 2/25] validate path and photo format 
+
+      // record path in photo field
+      const file = e.target.files[0];
+      this.photoURL = URL.createObjectURL(file);
+
+      var tempThis = this;
+      this.getBase64(file, function(base64Data){
+          tempThis.photoData = base64Data;
+          console.log(base64Data);
+          console.log("photo recorded");
+      });
+    },
     submit() {
       const data = {
         name: this.name,
@@ -226,15 +244,18 @@ export default {
         sleep: this.sleep2,
         isPrivate: this.private,
         description: this.introduction,
-        photo: this.photo,
+        photoURL: this.photoURL,
+        photoData: this.photoData,
       };
 
       // identify empty input
       for (var key in data) {
         if (data[key] == null || data[key] == "") {
+          console.log("There are empty input entries:" + key)
           return;
         }
-      }
+      };
+      
       var tempThis = this;
       tempThis.$store.commit("setProfile", data);
       this.$router.push("/");
@@ -249,17 +270,6 @@ export default {
           console.log("Error on Server.");
         });
     },
-
-    attachPath(elem) {
-      // TODO: [Yifei 2/25] validate path and photo format
-
-      // record path in photo field
-      const file = elem.target.files[0];
-      this.photo.image = file;
-      this.photo.url = URL.createObjectURL(file);
-      console.log("photo recorded");
-    },
-
     direct(target) {
       this.$router.push("/" + target);
     },
@@ -279,7 +289,7 @@ export default {
 }
 
 .profile_input .image-preview {
-  width: 80%;
+  width:80%;
 }
 .field {
   width: 80%;
