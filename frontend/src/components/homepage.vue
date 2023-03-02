@@ -203,16 +203,15 @@
           <!-- image of user -->
           <img
             class="card-img-top"
-            src="../img/mark-dp.jpg"
+            :src="getImgUrl(user)"
             alt="Card image cap"
-            v-if="user.gender === 'M'"
           />
-          <img
+          <!-- img
             class="card-img-top"
-            src="../img/sneha-dp.jpg"
+            :src="getImgUrl(user)"
             alt="Card image cap"
             v-else-if="user.gender === 'F'"
-          />
+          /-->
           <!-- main part of card -->
           <div class="card-body">
             <!-- name -->
@@ -262,16 +261,15 @@
           <div class="h-100" style="width: 30%; display: inline-block">
             <img
               class="card-img-top-popup img-thumbnail"
-              src="../img/mark-dp.jpg"
+              :src="getImgUrl(selectedUser)"
               alt="Card image cap"
-              v-if="this.selectedUser.gender === 'M'"
             />
-            <img
+            <!-- img
               class="card-img-top-popup img-thumbnail"
-              src="../img/sneha-dp.jpg"
+              :src="getImgUrl(selectedUser)"
               alt="Card image cap"
               v-else-if="this.selectedUser.gender === 'F'"
-            />
+            /-->
           </div>
           <div
             class="h-100 d-inline-block"
@@ -434,6 +432,10 @@ export default {
   //   console.log(this.$store.getters.getUser);
   // },
   methods: {
+    getImgUrl (user) {
+      console.log(user.photoURL);
+      return user.photoURL;
+    },
     clearInfo() {
       this.optional_msg = "";
     },
