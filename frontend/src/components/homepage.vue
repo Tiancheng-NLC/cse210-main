@@ -359,13 +359,13 @@
           </div>
         </div>
 
-        <div class="modal-body" style="background-color: #d1d1d1">
+        <div class="modal-body" style="border-radius: 20px">
           <div style="float: left; width: 30%">
             <!-- optional msg -->
             <textarea
               cols="30"
               rows="5"
-              placeholder="send optional message"
+              placeholder="Send optional message"
               style="width: 100%; margin-top: 3px"
               v-model="optional_msg"
             ></textarea>
