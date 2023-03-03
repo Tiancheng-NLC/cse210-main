@@ -25,7 +25,8 @@
     </div>
     <!-- left section -->
     <div id="left_header">
-      <button>Search</button>
+      <button @click="direct('')">Search</button>&nbsp;&nbsp; &nbsp;
+      <button @click="direct('connections')">Connections</button>
     </div>
     <!-- center section -->
     <div id="center_header" @click="direct('')">

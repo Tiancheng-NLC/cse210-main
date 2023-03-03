@@ -391,7 +391,6 @@
 </template>
 
 <script>
-import $ from "jquery";
 import axios from "axios";
 export default {
   data() {
@@ -583,7 +582,7 @@ td {
 }
 #my-search {
   background-color: rgba(128, 225, 128, 0.2);
-  margin-left: 80px;
+  margin-left: 30px;
   margin-right: 20px;
   padding-bottom: 15px;
   padding-top: 5px;
@@ -608,16 +607,11 @@ td {
 #home_search {
   text-align: left;
   font-size: 32px;
-  margin-left: 80px;
+  margin-left: 30px;
   margin-right: 80px;
   margin-bottom: 0;
   margin-top: 10px;
 }
-/* #cards {
-  width: 100%;
-  margin-left: 80px;
-  margin-right: 80px;
-} */
 .requirement {
   width: 110px;
   height: 32px;

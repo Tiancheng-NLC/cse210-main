@@ -8,12 +8,17 @@ import Profile from "../components/profile.vue";
 import OTPSignup from "../components/otp_signup.vue";
 import OTPForgotPassword from "../components/otp_forgot_password.vue";
 import TempSearchResults from "../components/temp_search_results.vue";
-
+import Connections from "../components/connections.vue";
 const routes=[
     {
         path: "/login",
         name: "login",
         component:Login,
+    },
+    {
+        path: "/connections",
+        name: "connections",
+        component:Connections,
     },
     {
         path: "/",
