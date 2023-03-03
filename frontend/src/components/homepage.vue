@@ -181,7 +181,7 @@
             style="background-color: #daa520"
             @click="createAlert"
           >
-            {{this.alertButton}}
+            {{ this.alertButton }}
           </button>
         </div>
       </div>
@@ -433,7 +433,7 @@ export default {
   //   console.log(this.$store.getters.getUser);
   // },
   methods: {
-    getImgUrl (user) {
+    getImgUrl(user) {
       console.log(user.photoURL);
       return user.photoURL;
     },
@@ -475,8 +475,8 @@ export default {
       axios
         .post("http://localhost:8080/api/sendEmailInvite", "", {
           headers: {
-            requesterEmail: temp.$store.getters.getUser,
-            receiverEmail: temp.selectedUser.email,
+            requestSenderEmail: temp.$store.getters.getUser,
+            requestReceiverEmail: temp.selectedUser.email,
             optionalMsg: temp.optional_msg,
           },
         })
@@ -501,7 +501,7 @@ export default {
           this.alertButton = "Done";
           setTimeout(() => {
             this.alertButton = "Notify Me";
-          }, 900)
+          }, 900);
         }
       })
       .catch(function (err) {
