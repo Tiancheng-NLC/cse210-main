@@ -246,8 +246,8 @@
             :src="getImgUrl(selectedUser)"
             alt="Card image cap"
           />
-          <button class="btn btn-primary" disabled v-if="this.pendingConnectionActive" style="width: 100%; margin-top: 3px;">Status: Pending</button>
-          <button class="btn btn-primary" disabled v-else style="width: 100%; margin-top: 3px; background-color: maroon; border-color: maroon;">Status: Rejected</button>        
+          <button class="btn btn-primary" disabled v-if="this.pendingConnectionActive" style="width: 100%; margin-top: 3px;"><i>Status: Pending</i></button>
+          <button class="btn btn-primary" disabled v-else style="width: 100%; margin-top: 3px; background-color: maroon; border-color: maroon;"><i>Status: Rejected</i></button>        
         </div>
         <div class="h-100 d-inline-block" style="width: 3%; padding-left: 5px; display: inline-block; float: right;">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -440,7 +440,7 @@ export default {
         acceptRejectConnectionActive: true,
         acceptedConnectionActive: false,
         pendingConnectionActive: true,
-        connectionsData:
+        TempconnectionsData:
         {
             userProfiles: {
               "hgondali@ucsd.edu": {"email":"hgondali@ucsd.edu","name":"Harsh Gondaliya","gender":"M","age":23,"nationality":"Asian","occupation":"S","approxBudget":1500,"smoking":"N","pets":"N","food":"V","riser":"Y","sleep":"Y","isPrivate":"N","description":"Temp","photoURL":"https://roomie-user-photo-001.s3.us-west-2.amazonaws.com/hgondali@ucsd.edu.JPG","photoData":null},
@@ -477,26 +477,27 @@ export default {
         selectedConnectionIndex: "",
         selectedUserSentMessage: "",
         selectedUserReceivedMessage: "",
-        TempconnectionsData: "",
+        connectionsData: "",
     };
   },
   mounted(){
     var tempThis = this;
-      axios
-        .post("http://localhost:8080/api/getConnections", "", {
-          headers: {
-            email: tempThis.$store.getters.getUser,
-          },
-        })
-        .then((response) => {
-          if (response.status == 200) {
-            tempThis.TempconnectionsData = response.data;
-          }
-        })
-        .catch(function (err) {
-          console.log(err);
-          console.log("no search result");
-        })
+    axios
+      .post("http://localhost:8080/api/getConnections", "", {
+        headers: {
+          email: tempThis.$store.getters.getUser,
+        },
+      })
+      .then((response) => {
+        if (response.status == 200) {
+          tempThis.connectionsData = response.data;
+          console.log(tempThis.connectionsData);
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+        console.log("no search result");
+      });
   },
   computed: {
     loggedIn() {
@@ -581,26 +582,71 @@ export default {
     },
     removeConnection(index){
       var tempThis = this;
-      tempThis.removeConnectionActive = false;
-      tempThis.connectionsData.allConnections.splice(index, 1);
-      tempThis.allConnectionsUsers =  this.getUserProfiles(tempThis.connectionsData.allConnections);
+      axios
+        .post("http://localhost:8080/api/rejectRequest", "", {
+          headers: {
+            requestSenderEmail: tempThis.connectionsData.allConnections[index].requestSenderEmail,
+            requestReceiverEmail: tempThis.connectionsData.allConnections[index].requestReceiverEmail,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.status == 200) {
+            tempThis.removeConnectionActive = false;
+            tempThis.connectionsData.allConnections.splice(index, 1);
+            tempThis.allConnectionsUsers =  this.getUserProfiles(tempThis.connectionsData.allConnections);
+          }
+        })
+        .catch(function (err) {
+          console.log(err);
+          console.log("no search result");
+        });
     },
     acceptConnection(index){
       var tempThis = this;
-      tempThis.acceptRejectConnectionActive = false;
-      tempThis.acceptedConnectionActive = true;
-      let copiedConnection = JSON.parse(JSON.stringify(tempThis.connectionsData.receivedRequests[index]));
-      copiedConnection.status = 'A';
-      tempThis.connectionsData.allConnections.push(copiedConnection);
-      tempThis.connectionsData.receivedRequests.splice(index, 1);
-      tempThis.receivedRequestsUsers =  this.getUserProfiles(tempThis.connectionsData.receivedRequests);
+      axios
+        .post("http://localhost:8080/api/acceptRequest", "", {
+          headers: {
+            requestSenderEmail: tempThis.connectionsData.receivedRequests[index].requestSenderEmail,
+            requestReceiverEmail: tempThis.connectionsData.receivedRequests[index].requestReceiverEmail,
+          },
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            tempThis.acceptRejectConnectionActive = false;
+            tempThis.acceptedConnectionActive = true;
+            let copiedConnection = JSON.parse(JSON.stringify(tempThis.connectionsData.receivedRequests[index]));
+            copiedConnection.status = 'A';
+            tempThis.connectionsData.allConnections.push(copiedConnection);
+            tempThis.connectionsData.receivedRequests.splice(index, 1);
+            tempThis.receivedRequestsUsers =  this.getUserProfiles(tempThis.connectionsData.receivedRequests);
+          }
+        })
+        .catch(function (err) {
+          console.log(err);
+          console.log("no search result");
+        });
     },
     rejectConnection(index){
       var tempThis = this;
-      tempThis.acceptRejectConnectionActive = false;
-      tempThis.acceptedConnectionActive = false;
-      tempThis.connectionsData.receivedRequests.splice(index, 1);
-      tempThis.receivedRequestsUsers =  this.getUserProfiles(tempThis.connectionsData.receivedRequests);
+      axios
+        .post("http://localhost:8080/api/rejectRequest", "", {
+          headers: {
+            requestSenderEmail: tempThis.connectionsData.receivedRequests[index].requestSenderEmail,
+            requestReceiverEmail: tempThis.connectionsData.receivedRequests[index].requestReceiverEmail,
+          },
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            tempThis.acceptRejectConnectionActive = false;
+            tempThis.acceptedConnectionActive = false;
+            tempThis.connectionsData.receivedRequests.splice(index, 1);
+            tempThis.receivedRequestsUsers =  this.getUserProfiles(tempThis.connectionsData.receivedRequests);          }
+        })
+        .catch(function (err) {
+          console.log(err);
+          console.log("no search result");
+        });
     },
     refreshData(){
     var tempThis = this;
@@ -612,13 +658,14 @@ export default {
         })
         .then((response) => {
           if (response.status == 200) {
-            tempThis.TempconnectionsData = response.data;
+            tempThis.connectionsData = response.data;
+            console.log(tempThis.connectionsData);
           }
         })
         .catch(function (err) {
           console.log(err);
           console.log("no search result");
-        })
+        });
     },
   },
 };

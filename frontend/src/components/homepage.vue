@@ -460,7 +460,7 @@ export default {
           headers: {
             requestSenderEmail: temp.$store.getters.getUser,
             requestReceiverEmail: temp.selectedUser.email,
-            optionalMsg: temp.optional_msg,
+            message: temp.optional_msg,
           },
         })
         .then(function (response) {
