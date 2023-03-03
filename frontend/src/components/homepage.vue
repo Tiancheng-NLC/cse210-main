@@ -263,7 +263,7 @@
               class="card-img-top-popup img-thumbnail"
               :src="getImgUrl(selectedUser)"
               alt="Card image cap"
-              style="margin-top: 13px;"
+              style="margin-top: 13px"
             />
             <!-- img
               class="card-img-top-popup img-thumbnail"
@@ -490,24 +490,25 @@ export default {
           console.log(err);
         });
     },
-  },
-  createAlert() {
-    const filter = this.filter;
-    axios
-      .post("http://localhost:8080/api/createAlertOnFilter", filter)
-      .then((response) => {
-        if (response.status == 200) {
-          console.log("alert created on filter");
-          this.alertButton = "Done";
-          setTimeout(() => {
-            this.alertButton = "Notify Me";
-          }, 900);
-        }
-      })
-      .catch(function (err) {
-        console.log(err);
-        console.log("no alert created");
-      });
+    createAlert() {
+      console.log("clciked");
+      const filter = this.filter;
+      axios
+        .post("http://localhost:8080/api/createAlertOnFilter", filter)
+        .then((response) => {
+          if (response.status == 200) {
+            console.log("alert created on filter");
+            this.alertButton = "Done";
+            setTimeout(() => {
+              this.alertButton = "Notify Me";
+            }, 900);
+          }
+        })
+        .catch(function (err) {
+          console.log(err);
+          console.log("no alert created");
+        });
+    },
   },
 };
 </script>
