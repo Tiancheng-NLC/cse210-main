@@ -2,15 +2,15 @@
   <div id="footer">
     <!-- right section -->
     <div id="right_footer">
-      <span>Privacy & Policy</span>
+      <router-link to="/privacy_policy">Privacy & Policy</router-link>
       &nbsp; &nbsp;&nbsp; &nbsp;
-      <!-- <span>Terms & Conditions</span> -->
+      <router-link to="/terms_conditions">Terms & Conditions</router-link>
     </div>
     <!-- left section -->
     <div id="left_footer">
-      <span>Contact Us</span>
+      <router-link to="/contact_us">Contact Us</router-link>
       &nbsp; &nbsp;&nbsp; &nbsp;
-      <span>About Us</span>
+      <router-link to="/about_us">About Us</router-link>
     </div>
   </div>
 </template>
