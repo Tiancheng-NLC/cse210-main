@@ -2,9 +2,9 @@
     <div id="contactus">
         <div id="contactusbox">
             <h1> Contact Us </h1> <br>
-            <h2> Email Address</h2> 
+            <h3> <u>Email Address </u></h3> 
             <span> roomieorganisation@gmail.com </span> <br> <br>
-            <h2> Mailing Address </h2> 
+            <h3> <u>Mailing Address </u></h3> 
             <span> 9500 Gilman Drive, Mail Code 0404 <br> La Jolla, CA 92093-0404 USA</span>
             <br> <br>
         </div>
