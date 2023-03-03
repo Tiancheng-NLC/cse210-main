@@ -4,7 +4,7 @@
     <div id="terms_conditions">
         <div id="terms_conditionsbox">
             <h1> Terms & Conditions </h1>
-            <span>
+            <span style="text-align: justify;">
 Our Terms and Conditions were last updated on March 2, 2023.
 <br>Please read these terms and conditions carefully before using Our Service.
 <br>Interpretation
