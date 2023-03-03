@@ -251,7 +251,7 @@
       <div class="modal-content">
         <div
           style="
-            height: 255px;
+            height: 235px;
             background-color: rgba(0, 128, 0, 0.2);
             padding: 8px;
             text-align: right;
@@ -263,6 +263,7 @@
               class="card-img-top-popup img-thumbnail"
               :src="getImgUrl(selectedUser)"
               alt="Card image cap"
+              style="margin-top: 13px;"
             />
             <!-- img
               class="card-img-top-popup img-thumbnail"
@@ -300,7 +301,7 @@
             "
           >
             <!-- name -->
-            <h4 class="card-title" style="margin-top: 25px">
+            <h4 class="card-title" style="margin-top: 8px">
               {{ this.selectedUser.name }}
             </h4>
             <!-- age and gender -->
@@ -380,7 +381,7 @@
           </div>
           <!-- description -->
           <div style="text-align: left; margin-left: 35%">
-            {{ this.selectedUser.name }}'s description:
+            <b>{{ this.selectedUser.name }}'s Introduction:</b>
             <br />
             {{ this.selectedUser.description }}
           </div>
