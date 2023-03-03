@@ -181,7 +181,7 @@
             style="background-color: #daa520"
             @click="createAlert"
           >
-            Notify Me
+            {{this.alertButton}}
           </button>
         </div>
       </div>
@@ -416,6 +416,7 @@ export default {
       image: "",
       selectedUser: "",
       sendInviteButtonMsg: "Send Invite",
+      alertButton: "Notify Me",
       // optional msg for send invite
       optional_msg: "",
     };
@@ -469,20 +470,6 @@ export default {
           console.log("no search result");
         });
     },
-    createAlert() {
-      const filter = this.filter;
-      axios
-        .post("http://localhost:8080/api/createAlertOnFilter", filter)
-        .then((response) => {
-          if (response.status == 200) {
-            console.log("alert created on filter");
-          }
-        })
-        .catch(function (err) {
-          console.log(err);
-          console.log("no alert created");
-        });
-    },
     sendEmailInvite() {
       var temp = this;
       axios
@@ -503,6 +490,24 @@ export default {
           console.log(err);
         });
     },
+  },
+  createAlert() {
+    const filter = this.filter;
+    axios
+      .post("http://localhost:8080/api/createAlertOnFilter", filter)
+      .then((response) => {
+        if (response.status == 200) {
+          console.log("alert created on filter");
+          this.alertButton = "Done";
+          setTimeout(() => {
+            this.alertButton = "Notify Me";
+          }, 900)
+        }
+      })
+      .catch(function (err) {
+        console.log(err);
+        console.log("no alert created");
+      });
   },
 };
 </script>
