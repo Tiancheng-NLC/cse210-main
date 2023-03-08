@@ -189,7 +189,7 @@
     <!-- cards space -->
     <div class="cards-container" v-show="loggedIn">
       <!-- each card -->
-      <span id="cards" v-for="user in users" :key="user.email">
+      <span id="cards" v-for="(user, index) in users" :key="user.email">
         <div
           class="card"
           style="
@@ -222,7 +222,7 @@
             <a
               href="#"
               class="stretched-link"
-              @click="showModal(user)"
+              @click="showModal(user, index)"
               data-bs-toggle="modal"
               data-bs-target="#myModal"
             ></a>
@@ -403,6 +403,7 @@ export default {
       users: [],
       image: "",
       selectedUser: "",
+      selectedUserIndex: "",
       sendInviteButtonMsg: "Send Invite",
       alertButton: "Notify Me",
       // optional msg for send invite
@@ -427,10 +428,11 @@ export default {
       console.log(this.showFilter);
       this.showFilter = !this.showFilter;
     },
-    showModal(user) {
+    showModal(user, index) {
       var temp = this;
       temp.selectedUser = user;
       temp.sendInviteButtonMsg = "Send Invite";
+      temp.selectedUserIndex = index;
       console.log(temp.selectedUser);
     },
     search() {
@@ -466,6 +468,7 @@ export default {
         .then(function (response) {
           if (response.status == 200) {
             temp.sendInviteButtonMsg = "Invited";
+            temp.users.splice(temp.selectedUserIndex,1);
           }
         })
         .catch(function (err) {

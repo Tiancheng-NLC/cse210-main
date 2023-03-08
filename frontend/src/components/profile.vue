@@ -122,7 +122,7 @@
       <div class="profile_input">
         <label>Upload Your Profile Photo Here:</label>
         <input type="file" accept="image/*" @change="attachPath"/>
-        <label  v-if="photoURL"> Photo Preview: </label>
+        <br><label  v-if="photoURL"> Photo Preview: </label><br>
         <img class="image-preview" v-if="photoURL" :src="photoURL"/>
       </div>
       <br />
@@ -289,7 +289,9 @@ export default {
 }
 
 .profile_input .image-preview {
-  width:80%;
+  width:45%;
+  height: 10rem;
+  object-fit: cover;
 }
 .field {
   width: 80%;
