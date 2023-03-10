@@ -250,7 +250,7 @@ export default {
 
       // identify empty input
       for (var key in data) {
-        if (data[key] == null || data[key] == "") {
+        if ((data[key] == null && key != "photoData") || data[key] == "")  {
           console.log("There are empty input entries:" + key)
           return;
         }
