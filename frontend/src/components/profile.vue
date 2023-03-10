@@ -122,7 +122,7 @@
       <div class="profile_input">
         <label>Upload Your Profile Photo Here:</label>
         <input type="file" accept="image/*" @change="attachPath"/>
-        <label  v-if="photoURL"> Photo Preview: </label>
+        <br><label  v-if="photoURL"> Photo Preview: </label><br>
         <img class="image-preview" v-if="photoURL" :src="photoURL"/>
       </div>
       <br />
@@ -220,6 +220,7 @@ export default {
       // record path in photo field
       const file = e.target.files[0];
       this.photoURL = URL.createObjectURL(file);
+      console.log(this.photoURL)
 
       var tempThis = this;
       this.getBase64(file, function(base64Data){
@@ -250,7 +251,7 @@ export default {
 
       // identify empty input
       for (var key in data) {
-        if (data[key] == null || data[key] == "") {
+        if ((data[key] == null && key != "photoData") || data[key] == "") {
           console.log("There are empty input entries:" + key)
           return;
         }
@@ -289,7 +290,9 @@ export default {
 }
 
 .profile_input .image-preview {
-  width:80%;
+  width:45%;
+  height: 10rem;
+  object-fit: cover;
 }
 .field {
   width: 80%;
