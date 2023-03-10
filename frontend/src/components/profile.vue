@@ -220,7 +220,6 @@ export default {
       // record path in photo field
       const file = e.target.files[0];
       this.photoURL = URL.createObjectURL(file);
-      console.log(this.photoURL)
 
       var tempThis = this;
       this.getBase64(file, function(base64Data){
