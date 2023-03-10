@@ -120,9 +120,9 @@
       <br />
       <!-- profile photo -->
       <div class="profile_input">
-        <label>Upload Your Profile Photo Here:</label>
-        <input type="file" accept="image/*" @change="attachPath"/>
-        <br><label  v-if="photoURL"> Photo Preview: </label><br>
+        <label>Upload Your Profile Photo Here:</label> <br>
+        <input type="file" accept="image/*" @change="attachPath"/><br><br>
+        <label  v-if="photoURL"> Photo Preview: </label><br>
         <img class="image-preview" v-if="photoURL" :src="photoURL"/>
       </div>
       <br />
