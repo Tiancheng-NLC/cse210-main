@@ -37,6 +37,14 @@
 </template>
 
 <script>
+window.onclick = function (e) {
+  if (!e.target.matches(".logo")) {
+    var DROPDOWN = document.getElementById("profile_dropdown");
+    if (DROPDOWN && DROPDOWN.style.visibility == "visible") {
+      DROPDOWN.style.visibility = "hidden";
+    }
+  }
+};
 export default {
   computed: {
     loggedIn() {
